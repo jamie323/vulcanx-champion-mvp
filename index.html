@@ -467,6 +467,7 @@
     <button class="sp-btn active" data-sp="orc">🟢 Orc</button>
     <button class="sp-btn" data-sp="elf">🌙 Elf</button>
     <button class="sp-btn" data-sp="goblin">👺 Goblin</button>
+    <button class="sp-btn" data-sp="demon">🔥 Hellknight</button>
   </div>
   <div class="currency">
     <div class="coin gold"><span class="icon">G</span><span id="curGold">1,540</span></div>
@@ -643,6 +644,27 @@ const SPECIES = {
       { name:'Sage',       minLevel:40, zone:'War',     img:'evolution/elf_L40_sage_final.jpg' },
       { name:'Highborn',   minLevel:45, zone:'Myth',    img:'evolution/elf_L45_highborn_final.jpg' },
       { name:'Archdruid',  minLevel:50, zone:'Myth',    img:'evolution/elf_L50_archdruid_final.jpg', legend:true },
+    ],
+  },
+  demon: {
+    label: 'Hellknight',
+    archetype: 'Pyromancer',
+    nameByStage: [
+      'Kaelith the Emberling', 'Kaelith Cinderkin', 'Kaelith Ashblood',
+      'Kaelith Flamebound', 'Kaelith Hellrider', 'Kaelith the Brandlord',
+      'Kaelith, Infernal Knight', 'Kaelith, Abyssal Knight',
+      'Kaelith, Hellknight Overlord',
+    ],
+    stages: [
+      { name:'Emberling',   minLevel:1,  zone:'Volcanic Nursery', img:'evolution/demon_infernal_L01_emberling_final.jpg' },
+      { name:'Cinderkin',   minLevel:5,  zone:'Basalt Village',  img:'evolution/demon_infernal_L05_cinderkin_final.jpg' },
+      { name:'Ashblood',    minLevel:10, zone:'Training Arena',  img:'evolution/demon_infernal_L10_ashblood_final.jpg' },
+      { name:'Flamebound',  minLevel:15, zone:'Ashen Ground',    img:'evolution/demon_infernal_L15_flamebound_final.jpg' },
+      { name:'Hellrider',   minLevel:20, zone:'Canyon of Embers',img:'evolution/demon_infernal_L20_hellrider_final.jpg' },
+      { name:'Brandlord',   minLevel:30, zone:'Cathedral',       img:'evolution/demon_infernal_L30_brandlord_final.jpg' },
+      { name:'Infernal Knight', minLevel:40, zone:'Warcamp',     img:'evolution/demon_infernal_L40_infernalknight_final.jpg' },
+      { name:'Abyssal Knight',  minLevel:45, zone:'Obsidian Tower',img:'evolution/demon_infernal_L45_abyssalknight_final.jpg' },
+      { name:'Hellknight Overlord', minLevel:50, zone:'Throne of the Caldera', img:'evolution/demon_infernal_L50_hellknightoverlord_final.jpg', legend:true },
     ],
   },
   goblin: {
