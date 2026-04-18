@@ -468,6 +468,7 @@
     <button class="sp-btn" data-sp="elf">🌙 Elf</button>
     <button class="sp-btn" data-sp="goblin">👺 Goblin</button>
     <button class="sp-btn" data-sp="demon">🔥 Hellknight</button>
+    <button class="sp-btn" data-sp="drakkin">🐉 Drakkin</button>
   </div>
   <div class="currency">
     <div class="coin gold"><span class="icon">G</span><span id="curGold">1,540</span></div>
@@ -665,6 +666,27 @@ const SPECIES = {
       { name:'Infernal Knight', minLevel:40, zone:'Warcamp',     img:'evolution/demon_infernal_L40_infernalknight_final.jpg' },
       { name:'Abyssal Knight',  minLevel:45, zone:'Obsidian Tower',img:'evolution/demon_infernal_L45_abyssalknight_final.jpg' },
       { name:'Hellknight Overlord', minLevel:50, zone:'Throne of the Caldera', img:'evolution/demon_infernal_L50_hellknightoverlord_final.jpg', legend:true },
+    ],
+  },
+  drakkin: {
+    label: 'Drakkin',
+    archetype: 'Elemental',
+    nameByStage: [
+      'Vorthrax Wyrmling', 'Vorthrax Fledgling', 'Vorthrax Scaleborn',
+      'Vorthrax Drakewarden', 'Vorthrax Drakonid', 'Vorthrax Scalelord',
+      'Vorthrax Drakelord', 'Vorthrax Primordial',
+      'Vorthrax, Drakelord Primordial',
+    ],
+    stages: [
+      { name:'Wyrmling',    minLevel:1,  zone:'Dragon Nest',    img:'evolution/drakkin_emberscale_L01_wyrmling_final.jpg' },
+      { name:'Fledgling',   minLevel:5,  zone:'Mountain Aerie', img:'evolution/drakkin_emberscale_L05_fledgling_final.jpg' },
+      { name:'Scaleborn',   minLevel:10, zone:'Clan Lodge',     img:'evolution/drakkin_emberscale_L10_scaleborn_final.jpg' },
+      { name:'Drakewarden', minLevel:15, zone:'High Plateau',   img:'evolution/drakkin_emberscale_L15_drakewarden_final.jpg' },
+      { name:'Drakonid',    minLevel:20, zone:'Monastery',      img:'evolution/drakkin_emberscale_L20_drakonid_final.jpg' },
+      { name:'Scalelord',   minLevel:30, zone:'Volcanic Field', img:'evolution/drakkin_emberscale_L30_scalelord_final.jpg' },
+      { name:'Drakelord',   minLevel:40, zone:'Crater Rim',     img:'evolution/drakkin_emberscale_L40_drakelord_final.jpg' },
+      { name:'Primordial',  minLevel:45, zone:'Elemental Shrine',img:'evolution/drakkin_emberscale_L45_primordial_final.jpg' },
+      { name:'Drakelord Primordial', minLevel:50, zone:'World\\'s Peak', img:'evolution/drakkin_emberscale_L50_drakelordprimordial_final.jpg', legend:true },
     ],
   },
   goblin: {
