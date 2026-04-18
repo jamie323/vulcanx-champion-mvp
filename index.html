@@ -102,20 +102,22 @@
     background: var(--panel2); border: 1px solid var(--border);
     border-radius: 4px; display: flex; align-items: center;
     justify-content: center; position: relative; overflow: hidden;
-    cursor: default; }
+    cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
+  .stage-slot:hover { transform: translateY(-2px);
+    border-color: var(--accent-dim); }
   .stage-slot img { width: 100%; height: 100%;
     object-fit: cover; object-position: center 20%; }
-  .stage-slot .mask { position: absolute; inset: 0;
-    background: rgba(10,6,8,0.75);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; color: var(--muted); }
-  .stage-slot.unlocked .mask { display: none; }
   .stage-slot.current { border-color: var(--accent);
     box-shadow: 0 0 12px rgba(255,205,107,0.3); }
   .stage-slot .num { position: absolute; top: 3px; left: 4px;
     font-size: 9px; background: rgba(10,6,8,0.85);
     padding: 1px 4px; border-radius: 2px; color: var(--muted); z-index: 3; }
   .stage-slot.current .num { color: var(--accent); }
+  .stage-slot .stagelabel { position: absolute; bottom: 2px; left: 3px;
+    right: 3px; font-size: 8px; color: var(--text);
+    background: rgba(10,6,8,0.85); padding: 1px 3px; border-radius: 2px;
+    text-align: center; text-transform: uppercase; letter-spacing: 0.5px;
+    font-weight: 700; z-index: 3; }
 
   aside { background: linear-gradient(180deg,#15101a,#0a0608);
     border-left: 1px solid var(--border);
@@ -176,7 +178,39 @@
   .icon-LCK { background: #5a2050; color: #ff80df; }
   .trait-info { min-width: 0; }
   .trait-name { font-size: 11px; color: var(--muted);
-    letter-spacing: 0.5px; text-transform: uppercase; }
+    letter-spacing: 0.5px; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 4px; }
+  .info-dot { display: inline-flex; align-items: center;
+    justify-content: center;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: #3a2a30; color: var(--muted);
+    font-size: 9px; font-weight: 700; cursor: help;
+    font-family: serif; }
+  .info-dot:hover { background: var(--accent); color: #1a0a05; }
+
+  /* global-rank row */
+  .rank-bar { display: flex; justify-content: space-between;
+    margin-top: 10px; padding: 8px 10px;
+    background: rgba(40,20,10,0.4); border: 1px solid var(--border);
+    border-radius: 6px; font-size: 11px; cursor: pointer; }
+  .rank-bar:hover { border-color: var(--accent); }
+  .rank-bar .label { color: var(--muted); letter-spacing: 0.5px;
+    text-transform: uppercase; font-weight: 600; }
+  .rank-bar .value { color: var(--accent); font-weight: 700; }
+  .rank-bar .arrow { color: var(--muted); margin-left: 6px; }
+
+  /* help tooltip */
+  .tooltip {
+    position: absolute;
+    bottom: 100%; left: 50%; transform: translate(-50%, -6px);
+    background: #2a1a22; border: 1px solid var(--border-glow);
+    color: var(--text); padding: 8px 10px; border-radius: 6px;
+    font-size: 11px; letter-spacing: 0; text-transform: none;
+    font-weight: 400; white-space: nowrap; z-index: 500;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    pointer-events: none;
+    max-width: 260px; white-space: normal;
+  }
   .trait-bar { height: 4px; background: #1a0e10;
     border-radius: 2px; overflow: hidden; margin-top: 3px; }
   .trait-fill { height: 100%;
@@ -286,6 +320,13 @@
 </main>
 
 <aside>
+  <div class="card" style="padding:12px 14px;">
+    <div style="font-size:11px; color:var(--muted); line-height:1.5;">
+      <b style="color:var(--accent-dim); letter-spacing:1.5px; text-transform:uppercase; font-size:10px;">How this works</b><br/>
+      Feed species-matched potions to your champion to fill the Evolution bar and raise traits. Chests come from the <b style="color:var(--text)">Quests hub</b> elsewhere in VulcanX — you just bring the potions here.
+    </div>
+  </div>
+
   <div class="card">
     <div class="card-title">Your Champion</div>
     <div class="champion-name" id="champName">Grokk the Whelp</div>
@@ -303,6 +344,11 @@
     </div>
 
     <button class="evolve-btn" id="evolveBtn" disabled>⚡ Evolve (locked)</button>
+
+    <div class="rank-bar" id="globalRankBar">
+      <span class="label">Global Power Rank</span>
+      <span class="value">#<span id="globalRankNum">147</span> of <span id="globalRankTotal">1,482</span><span class="arrow">→</span></span>
+    </div>
   </div>
 
   <div class="card">
@@ -324,21 +370,44 @@
 </aside>
 
 <div class="actions">
-  <button class="action-btn" onclick="alert('Quests hub — coming soon. Complete quests to earn chests.')">🎯 Quests</button>
-  <button class="action-btn primary" id="chestBtn">📦 Open Chest (<span id="chestCount">3</span>)</button>
-  <button class="action-btn" onclick="alert('Arena — async stat battles coming soon.')">⚔️ Arena</button>
-  <button class="action-btn locked" id="animateBtn" disabled>✨ Animate (L50 only)</button>
+  <button class="action-btn" onclick="alert('🎯 Quests hub — opens in the main VulcanX ecosystem. Complete quests there to earn chests, which you open elsewhere. Chests drop potions that you bring back here to feed your champion.')">🎯 Quests</button>
+  <button class="action-btn" id="leaderboardBtn">🏆 Leaderboard</button>
+  <button class="action-btn" onclick="alert('⚔️ Arena — async stat battles coming soon. Two champions enter, deterministic winner based on stats + species affinity.')">⚔️ Arena</button>
+  <button class="action-btn primary" id="animateBtn">✨ Animate Champion</button>
 </div>
 
-<div class="modal-backdrop" id="chestModal">
-  <div class="modal">
-    <h3>Open Chest</h3>
-    <div class="sub">Chest contents are randomly rolled. Species may differ from yours.</div>
-    <div class="chest-anim" id="chestBox">📦</div>
-    <div class="chest-result" id="chestResult" style="display:none;"></div>
-    <button class="btn-primary" id="chestCloseBtn">Close</button>
+<div class="modal-backdrop" id="leaderboardModal">
+  <div class="modal" style="width: 480px;">
+    <h3>🏆 Champion Leaderboard</h3>
+    <div class="sub">Ranked by Power Score: stage × stage-multiplier + total stats + rank ELO</div>
+    <div style="display:flex; gap:4px; margin-bottom:14px;">
+      <button class="sp-btn lb-filter active" data-sp="all">All Species</button>
+      <button class="sp-btn lb-filter" data-sp="orc">🟢 Orc</button>
+      <button class="sp-btn lb-filter" data-sp="elf">🌙 Elf</button>
+      <button class="sp-btn lb-filter" data-sp="goblin">👺 Goblin</button>
+    </div>
+    <div id="lbList" style="max-height: 380px; overflow-y: auto;
+         font-size: 12px;"></div>
+    <button class="btn-primary" id="lbCloseBtn" style="margin-top:14px;">Close</button>
   </div>
 </div>
+<style>
+  .lb-row { display: grid; grid-template-columns: 40px 40px 1fr auto;
+    gap: 10px; padding: 8px 4px; border-bottom: 1px dashed var(--border);
+    align-items: center; }
+  .lb-row:last-child { border: none; }
+  .lb-rank { color: var(--accent); font-weight: 700; text-align: center; }
+  .lb-rank.top3 { color: var(--legend); }
+  .lb-icon { font-size: 22px; text-align: center; }
+  .lb-info { min-width: 0; }
+  .lb-name { font-weight: 700; font-size: 13px; }
+  .lb-detail { color: var(--muted); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.5px; }
+  .lb-score { color: var(--accent); font-weight: 700; font-size: 13px; }
+  .lb-score .e { color: var(--muted); font-size: 10px; font-weight: 400; }
+  .lb-row.me { background: rgba(255,205,107,0.08); border-radius: 4px; }
+  .lb-row.me .lb-name { color: var(--accent); }
+</style>
 
 <script>
 const SPECIES = {
@@ -437,8 +506,7 @@ const STAGE_FLOORS = [
 let state = {
   level: 1, stageIdx: 0, evoPct: 0, evoMaxLevel: 5,
   stats: {},
-  inv: { evo:2, alloc:1, STR:6, VIT:4, AGI:2, FER:3, INT:2, LCK:5 },
-  chests: 3,
+  inv: { evo:3, alloc:2, STR:10, VIT:8, AGI:6, FER:6, INT:5, LCK:8 },
   rank: { tier:'Iron', division:'III' },
 };
 
@@ -507,64 +575,81 @@ function evolve() {
   render();
 }
 
-// CHEST LOOT TABLE
-const CHEST_TABLE = [
-  { wt:3,  name:'Evolution Potion',   type:'evo'  },
-  { wt:7,  name:'Allocation Potion',  type:'alloc'},
-  { wt:10, name:'Epic Trait Potion',  type:'epic' },
-  { wt:20, name:'Major Trait Potion', type:'major'},
-  { wt:40, name:'Minor Trait Potion', type:'minor'},
-  { wt:20, name:'Essence',            type:'ess'  },
+// ============================================================
+// TRAIT HELP — info tooltips
+// ============================================================
+const TRAIT_HELP = {
+  STR: 'Strength — raw physical damage. Drives melee attacks, knockback, and weapon swing power. Primary for brute species (Orc, Drakkin). Matters in every combat mode.',
+  VIT: 'Vitality — hit points, damage resistance, and regeneration rate. Tanky champions survive longer in battles. Primary for defenders (Orc, Dwarf).',
+  AGI: 'Agility — evasion chance, movement speed, turn order priority, first-strike. High AGI goes first in combat. Primary for rogues (Elf, Goblin).',
+  FER: 'Ferocity — critical hit chance and rage/berserk trigger. Spikes damage unpredictably. Pairs well with STR or INT for burst builds.',
+  INT: 'Intelligence — arcane damage, cooldown reduction, resource efficiency. Drives magic-based attacks and potion yield bonuses. Primary for casters (Elf, Demon).',
+  LCK: 'Luck — loot drop rate, dodge chance, critical-escape from otherwise-lethal hits, and bonus essence from quests. Primary for tricksters (Elf, Goblin).',
+};
+
+// ============================================================
+// FAKE LEADERBOARD DATA
+// ============================================================
+const LEADERBOARD = [
+  { rank:1, name:'Ashdor the Unbroken', species:'orc', stage:8, level:50, elo:2840, power:98200, owner:'@ashdor.eth' },
+  { rank:2, name:'Velenia Moonsong',    species:'elf', stage:8, level:50, elo:2710, power:95100, owner:'@veleniamoon' },
+  { rank:3, name:'Kragg Oneyed',        species:'orc', stage:8, level:50, elo:2655, power:93700, owner:'@kragg99' },
+  { rank:4, name:'Silvanas Greenbough', species:'elf', stage:7, level:49, elo:2580, power:82400, owner:'@silvanas' },
+  { rank:5, name:'Snikrit the Cruel',   species:'goblin', stage:8, level:50, elo:2510, power:79200, owner:'@snikrit' },
+  { rank:6, name:'Vorhak Ironjaw',      species:'orc', stage:7, level:48, elo:2420, power:73800, owner:'@vorhak' },
+  { rank:7, name:'Illyaris Dawnspire',  species:'elf', stage:7, level:47, elo:2380, power:70100, owner:'@illyaris' },
+  { rank:8, name:'Grizzlemaw',          species:'goblin', stage:7, level:46, elo:2290, power:65700, owner:'@grizz.vx' },
+  { rank:9, name:'Tharok the Red',      species:'orc', stage:6, level:44, elo:2180, power:58200, owner:'@tharokvx' },
+  { rank:10,name:'Thaelrion of the Vale', species:'elf', stage:6, level:43, elo:2150, power:55400, owner:'@thaelrion' },
+  { rank:11,name:'Scutter',             species:'goblin', stage:6, level:42, elo:2090, power:52100, owner:'@scutter' },
+  { rank:12,name:'Mogar Deathfang',     species:'orc', stage:6, level:41, elo:2030, power:49800, owner:'@mogar' },
+  // ... (truncated — just enough for demo)
 ];
-function rollChest() {
-  const total = CHEST_TABLE.reduce((s,x)=>s+x.wt,0);
-  let r = Math.random()*total;
-  for (const e of CHEST_TABLE) {
-    if (r < e.wt) {
-      const c = {...e};
-      if (c.type === 'minor' || c.type === 'major' || c.type === 'epic') {
-        c.trait = TRAITS[Math.floor(Math.random()*6)];
-      }
-      return c;
-    }
-    r -= e.wt;
-  }
+
+function renderLeaderboard(filter = 'all') {
+  const list = document.getElementById('lbList');
+  const SPECIES_ICON = { orc:'🟢', elf:'🌙', goblin:'👺' };
+  const currentPower = computePowerScore();
+  const myEntry = {
+    rank: '—', name: SPECIES[currentSpecies].nameByStage[state.stageIdx],
+    species: currentSpecies, stage: state.stageIdx, level: state.level,
+    elo: 150, power: currentPower, owner: 'YOU', me: true,
+  };
+  const rows = filter === 'all' ? LEADERBOARD : LEADERBOARD.filter(r => r.species === filter);
+  list.innerHTML = '';
+  // Insert user somewhere based on power, for demo
+  const withMe = [...rows];
+  const meRank = withMe.findIndex(r => r.power < currentPower);
+  if (meRank === -1) withMe.push(myEntry); else withMe.splice(meRank, 0, myEntry);
+  withMe.forEach((r, i) => {
+    const rankLabel = r.me ? '—' : (r.rank || i+1);
+    const isTop3 = !r.me && rankLabel <= 3;
+    const icon = SPECIES_ICON[r.species];
+    list.insertAdjacentHTML('beforeend',
+      `<div class="lb-row ${r.me?'me':''}">
+        <div class="lb-rank ${isTop3?'top3':''}">${r.me?'YOU':'#'+rankLabel}</div>
+        <div class="lb-icon">${icon}</div>
+        <div class="lb-info">
+          <div class="lb-name">${r.name}</div>
+          <div class="lb-detail">${r.species} · L${r.level} · ${SPECIES[r.species].stages[r.stage].name} · ${r.owner}</div>
+        </div>
+        <div class="lb-score">${r.power.toLocaleString()}<span class="e"> pwr</span></div>
+      </div>`);
+  });
 }
 
-function openChest() {
-  if (state.chests <= 0) {
-    alert('No chests left. Complete quests to earn more.');
-    return;
-  }
-  state.chests--;
-  const box = document.getElementById('chestBox');
-  const mod = document.getElementById('chestModal');
-  const res = document.getElementById('chestResult');
-  mod.classList.add('open');
-  box.classList.add('opening');
-  res.style.display = 'none';
-  setTimeout(() => {
-    box.classList.remove('opening');
-    box.classList.add('burst');
-    const c = rollChest();
-    const evoCls = c.type === 'evo' ? 'evo' : '';
-    res.innerHTML =
-      `<div class="item ${evoCls}">` +
-        (c.trait ? c.trait + ' ' : '') + c.name +
-      `</div><div class="sub">+1 to your Orc inventory</div>`;
-    res.style.display = 'block';
-    if (c.type === 'evo') state.inv.evo++;
-    else if (c.type === 'alloc') state.inv.alloc++;
-    else if (c.type === 'minor') state.inv[c.trait]++;
-    else if (c.type === 'major') state.inv[c.trait] += 3;
-    else if (c.type === 'epic')  state.inv[c.trait] += 8;
-    render();
-  }, 1500);
+function computePowerScore() {
+  const stage = state.stageIdx;
+  const statSum = Object.values(state.stats).reduce((a,b)=>a+b, 0);
+  return Math.round(stage * 5000 + statSum + state.level * 100);
 }
-function closeChest() {
-  const box = document.getElementById('chestBox');
-  document.getElementById('chestModal').classList.remove('open');
-  box.classList.remove('burst', 'opening');
+
+function showLeaderboard() {
+  renderLeaderboard('all');
+  document.getElementById('leaderboardModal').classList.add('open');
+}
+function closeLeaderboard() {
+  document.getElementById('leaderboardModal').classList.remove('open');
 }
 
 function render() {
@@ -618,7 +703,8 @@ function render() {
       `<div class="trait-row">
         <div class="trait-icon icon-${t}">${t}</div>
         <div class="trait-info">
-          <div class="trait-name">${TRAIT_NAMES[t]}</div>
+          <div class="trait-name">${TRAIT_NAMES[t]}
+            <span class="info-dot" data-help="${t}">?</span></div>
           <div class="trait-bar"><div class="trait-fill ${atCap?'cap':''}"
             style="width:${pct}%"></div></div>
         </div>
@@ -629,6 +715,13 @@ function render() {
   });
   tBox.querySelectorAll('.trait-use').forEach(b =>
     b.addEventListener('click', () => usePotion(b.dataset.t)));
+  // wire help dots
+  tBox.querySelectorAll('.info-dot').forEach(dot => {
+    dot.addEventListener('click', ev => {
+      ev.stopPropagation();
+      showTooltip(dot, TRAIT_HELP[dot.dataset.help]);
+    });
+  });
 
   // inventory
   document.getElementById('invEvo').textContent = state.inv.evo;
@@ -637,27 +730,46 @@ function render() {
     const el = document.getElementById('inv' + t);
     if (el) el.textContent = state.inv[t];
   });
-  document.getElementById('chestCount').textContent = state.chests;
 
-  // strip
+  // strip (all clickable - preview mode)
   const strip = document.getElementById('stageStrip');
   strip.innerHTML = '';
   STAGES.forEach((s,i) => {
-    const unlocked = i <= state.stageIdx;
     const cur = i === state.stageIdx;
     strip.insertAdjacentHTML('beforeend',
-      `<div class="stage-slot ${unlocked?'unlocked':''} ${cur?'current':''}">
+      `<div class="stage-slot ${cur?'current':''}" data-stage="${i}"
+            title="Click to preview ${s.name}">
         <div class="num">L${s.minLevel}</div>
         <img src="${s.img}" />
-        ${unlocked ? '' : '<div class="mask">🔒</div>'}
+        <div class="stagelabel">${s.name}</div>
       </div>`);
   });
+  strip.querySelectorAll('.stage-slot').forEach(slot => {
+    slot.addEventListener('click', () => {
+      const idx = +slot.dataset.stage;
+      state.stageIdx = idx;
+      state.level = STAGES[idx].minLevel;
+      state.evoPct = 0;
+      state.evoMaxLevel = GATE_LEVELS[idx] || 50;
+      initStats();
+      render();
+    });
+  });
 
-  // animate button
+  // global rank
+  const pwr = computePowerScore();
+  // fake a rank position based on power
+  const sameSpeciesCount = Math.floor(1200 + Math.random()*600);
+  const globalRank = Math.max(1, Math.floor(sameSpeciesCount * (1 - pwr/100000)));
+  document.getElementById('globalRankNum').textContent = globalRank.toLocaleString();
+  document.getElementById('globalRankTotal').textContent = sameSpeciesCount.toLocaleString();
+
+  // animate button — always clickable for preview, shows info if not legendary yet
   const animBtn = document.getElementById('animateBtn');
-  animBtn.classList.toggle('locked', state.stageIdx < 8);
-  animBtn.disabled = state.stageIdx < 8;
-  animBtn.innerHTML = state.stageIdx >= 8 ? '✨ Animate Champion' : '✨ Animate (L50 only)';
+  animBtn.innerHTML = state.stageIdx >= 8
+    ? '✨ Animate Champion'
+    : '✨ Animate (unlocks at L50)';
+  animBtn.classList.toggle('primary', state.stageIdx >= 8);
 }
 
 document.querySelectorAll('.sp-btn').forEach(btn => {
@@ -673,14 +785,45 @@ document.querySelectorAll('.sp-btn').forEach(btn => {
     render();
   });
 });
-document.getElementById('chestBtn').addEventListener('click', openChest);
-document.getElementById('chestCloseBtn').addEventListener('click', closeChest);
 document.getElementById('evolveBtn').addEventListener('click', evolve);
 document.getElementById('animateBtn').addEventListener('click', () => {
   if (state.stageIdx >= 8) {
-    alert('✨ Animate flow (demo): would call Kling / Luma image-to-video API on your L50 orc.\n\nCost: 400 Essence (earned currency).\nResult: unique 5-second looping MP4, cached forever per champion NFT, auto-plays on your profile and social cards.');
+    alert('✨ Animate flow (demo): would call Kling / Luma image-to-video API on your L50 champion.\n\nCost: 400 Essence (earned currency).\nResult: unique 5-second looping MP4, cached forever per champion NFT, auto-plays on your profile and social cards.');
+  } else {
+    alert('✨ Animate unlocks at L50 Legendary tier. In this demo you can click any stage in the strip below to preview it — try jumping to the Legendary stage.');
   }
 });
+document.getElementById('leaderboardBtn').addEventListener('click', showLeaderboard);
+document.getElementById('lbCloseBtn').addEventListener('click', closeLeaderboard);
+document.getElementById('globalRankBar').addEventListener('click', showLeaderboard);
+document.querySelectorAll('.lb-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.lb-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderLeaderboard(btn.dataset.sp);
+  });
+});
+
+// tooltip helper
+let activeTooltip = null;
+function showTooltip(anchor, text) {
+  hideTooltip();
+  const tip = document.createElement('div');
+  tip.className = 'tooltip';
+  tip.textContent = text;
+  document.body.appendChild(tip);
+  const r = anchor.getBoundingClientRect();
+  tip.style.position = 'fixed';
+  tip.style.bottom = 'auto';
+  tip.style.top = (r.top - 10) + 'px';
+  tip.style.left = (r.left + r.width/2) + 'px';
+  tip.style.transform = 'translate(-50%, -100%)';
+  activeTooltip = tip;
+  setTimeout(() => document.addEventListener('click', hideTooltip, { once: true }), 0);
+}
+function hideTooltip() {
+  if (activeTooltip) { activeTooltip.remove(); activeTooltip = null; }
+}
 
 initStats();
 render();
