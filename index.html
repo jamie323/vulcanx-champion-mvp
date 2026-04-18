@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>VulcanX Champion — Orc</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --panel: #14141c;
+    --panel2: #1d1d26;
+    --border: #2a2a36;
+    --text: #f0f0f6;
+    --muted: #8a8a98;
+    --accent: #ffcd6b;
+    --ok: #7dff9a;
+    --epic: #c084fc;
+    --legend: #ff8e6b;
+    --fill: #ffcd6b;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0; min-height: 100vh;
+    background: radial-gradient(ellipse at top, #151525 0%, #06060a 100%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                 system-ui, sans-serif;
+  }
+  body { display: grid; grid-template-columns: 1fr 380px; min-height: 100vh; }
+
+  /* ==== main stage ==== */
+  main {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: flex-start; padding: 30px 20px; position: relative;
+  }
+  .champion-name {
+    font-size: 13px; letter-spacing: 3px; color: var(--muted);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .champion-title {
+    font-size: 28px; font-weight: 700; letter-spacing: 0.3px;
+    margin-bottom: 2px;
+  }
+  .champion-sub {
+    color: var(--muted); font-size: 13px; margin-bottom: 18px;
+  }
+
+  .stage-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: linear-gradient(90deg, #2a2010 0%, #3a2818 100%);
+    border: 1px solid #5a3820;
+    color: var(--accent);
+    padding: 4px 12px; border-radius: 20px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .stage-badge.legend {
+    background: linear-gradient(90deg, #3a0f0f 0%, #4a2818 100%);
+    border-color: #8a3820;
+    color: var(--legend);
+    box-shadow: 0 0 16px rgba(255, 142, 107, 0.3);
+  }
+
+  .stage-frame {
+    position: relative;
+    width: min(480px, 80vh * (1024/1536));
+    aspect-ratio: 1024 / 1536;
+    border-radius: 12px; overflow: hidden;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.6),
+      0 0 0 1px rgba(255,255,255,0.08) inset;
+    background: #050509;
+  }
+  .stage-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+  .stage-frame .vfx-overlay {
+    position: absolute; inset: 0; pointer-events: none;
+    mix-blend-mode: screen; opacity: 0;
+    transition: opacity 0.6s ease;
+    background: radial-gradient(ellipse at center 70%,
+      rgba(255,140,60,0.35) 0%, transparent 60%);
+  }
+  .stage-frame.aura .vfx-overlay { opacity: 1; }
+  .stage-frame .level-display {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(10,10,14,0.85);
+    border: 1px solid rgba(255,205,107,0.4);
+    padding: 6px 12px; border-radius: 6px;
+    font-size: 20px; font-weight: 800; letter-spacing: 2px;
+    color: var(--accent);
+  }
+
+  /* ==== stage slider ==== */
+  .slider-wrap {
+    width: 100%; max-width: 640px; margin-top: 24px;
+    padding: 12px 20px;
+    background: rgba(20,20,28,0.6);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .slider-head {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .slider-head .zone { color: var(--accent); font-weight: 600; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .stage-marks {
+    display: flex; justify-content: space-between; font-size: 10px;
+    color: var(--muted); margin-top: 4px;
+  }
+
+  /* ==== right panel ==== */
+  aside {
+    background: var(--panel);
+    border-left: 1px solid var(--border);
+    padding: 24px;
+    overflow-y: auto;
+  }
+  h2 {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 10px;
+  }
+  .section { margin-bottom: 22px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+
+  /* stat rows */
+  .stat-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px; border-radius: 6px;
+    background: var(--panel2);
+    margin-bottom: 6px;
+    transition: background 0.15s;
+  }
+  .stat-row:hover { background: #252530; }
+  .stat-icon {
+    width: 26px; height: 26px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 11px; flex-shrink: 0;
+  }
+  .icon-str { background: #5a2020; color: #ff8080; }
+  .icon-vit { background: #205a20; color: #80ff80; }
+  .icon-agi { background: #205a5a; color: #80ffff; }
+  .icon-fer { background: #5a3a10; color: #ffaa40; }
+  .icon-int { background: #2a205a; color: #9090ff; }
+  .icon-lck { background: #5a2050; color: #ff80df; }
+
+  .stat-info { flex: 1; }
+  .stat-label {
+    font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .stat-value-row { display: flex; align-items: baseline; gap: 6px; }
+  .stat-value { font-size: 17px; font-weight: 700; }
+  .stat-cap { font-size: 10px; color: var(--muted); }
+  .stat-bar {
+    height: 4px; background: #252530; border-radius: 2px;
+    overflow: hidden; margin-top: 3px;
+  }
+  .stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4a3a20 0%, var(--accent) 100%);
+    transition: width 0.4s;
+  }
+  .stat-fill.at-cap { background: var(--epic); }
+
+  .use-btn {
+    background: #2a2a36; color: var(--text);
+    border: 1px solid var(--border);
+    padding: 4px 10px; font-size: 11px;
+    border-radius: 4px; cursor: pointer;
+    font-weight: 600;
+  }
+  .use-btn:hover { background: var(--accent); color: #1a1a1a;
+    border-color: var(--accent); }
+  .use-btn:disabled {
+    opacity: 0.4; cursor: not-allowed;
+    background: #1a1a20;
+  }
+
+  /* evolve panel */
+  .evolve-panel {
+    background: linear-gradient(135deg, #1a1a28 0%, #0a0a18 100%);
+    border: 1px solid #3a3a4a;
+    padding: 14px; border-radius: 8px;
+  }
+  .evolve-ready { border-color: var(--accent); box-shadow: 0 0 18px rgba(255,205,107,0.15); }
+  .evolve-label { font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .evolve-target { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .evolve-req {
+    font-size: 11px; color: var(--muted);
+    margin-bottom: 10px; line-height: 1.4;
+  }
+  .evolve-btn {
+    width: 100%; padding: 10px;
+    background: linear-gradient(90deg, #ffcd6b 0%, #ff8e6b 100%);
+    color: #1a1a1a; font-weight: 700; letter-spacing: 0.5px;
+    border: none; border-radius: 6px; cursor: pointer;
+    font-size: 13px;
+  }
+  .evolve-btn:disabled {
+    background: #2a2a36; color: var(--muted);
+    cursor: not-allowed;
+  }
+
+  /* potion inventory */
+  .potion-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .potion {
+    background: var(--panel2); border: 1px solid var(--border);
+    padding: 8px 6px; border-radius: 5px;
+    text-align: center; font-size: 10px;
+    color: var(--muted);
+  }
+  .potion .amt { color: var(--text); font-size: 14px; font-weight: 700; }
+  .potion.evolution { border-color: var(--legend); color: var(--legend); }
+  .potion.evolution .amt { color: var(--legend); }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="champion-name">YOUR CHAMPION</div>
+  <div class="champion-title" id="champName">Grokk the Whelp</div>
+  <div class="champion-sub" id="champSub">Orc · Level 1 · Nursery</div>
+  <div class="stage-badge" id="stageBadge">WHELP</div>
+
+  <div class="stage-frame" id="stageFrame" style="margin-top:16px;">
+    <img id="stageImg" src="evolution/L01_whelp_final.jpg" />
+    <div class="vfx-overlay"></div>
+    <div class="level-display" id="levelDisplay">L01</div>
+  </div>
+
+  <div class="slider-wrap">
+    <div class="slider-head">
+      <span>LEVEL <span id="levelNum">1</span> / 50</span>
+      <span class="zone" id="zoneLabel">Nursery</span>
+    </div>
+    <input type="range" id="levelSlider" min="1" max="50" value="1" />
+    <div class="stage-marks">
+      <span>L1</span><span>L10</span><span>L20</span>
+      <span>L30</span><span>L40</span><span>L50</span>
+    </div>
+  </div>
+</main>
+
+<aside>
+  <div class="section">
+    <h2>Identity</h2>
+    <div style="font-size:12px; color:var(--muted); line-height:1.7;">
+      <div><b style="color:var(--text);">Species:</b> Orc · Brute</div>
+      <div><b style="color:var(--text);">Lineage:</b> Blackfang Tribe</div>
+      <div><b style="color:var(--text);">Signature:</b> Left-brow scar · right cheek mole · boar-tusk pendant</div>
+      <div><b style="color:var(--text);">Born:</b> Apr 18, 2026</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Traits</h2>
+    <div id="traits"></div>
+  </div>
+
+  <div class="section">
+    <h2>Evolution</h2>
+    <div class="evolve-panel" id="evolvePanel">
+      <div class="evolve-label">Next stage</div>
+      <div class="evolve-target" id="evolveTarget">Pup (L5)</div>
+      <div class="evolve-req" id="evolveReq">
+        Requires 2 traits at ≥ 60% of Whelp cap.
+      </div>
+      <button class="evolve-btn" id="evolveBtn" disabled>
+        Evolve · costs 1 Orc Evolution Potion
+      </button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Inventory</h2>
+    <div class="potion-grid">
+      <div class="potion evolution">
+        <div class="amt" id="invEvo">1</div>
+        EVO POTION
+      </div>
+      <div class="potion"><div class="amt" id="invStr">4</div>STR Minor</div>
+      <div class="potion"><div class="amt" id="invVit">3</div>VIT Minor</div>
+      <div class="potion"><div class="amt" id="invAgi">2</div>AGI Minor</div>
+      <div class="potion"><div class="amt" id="invFer">2</div>FER Minor</div>
+      <div class="potion"><div class="amt" id="invInt">1</div>INT Minor</div>
+      <div class="potion"><div class="amt" id="invLck">3</div>LCK Minor</div>
+    </div>
+  </div>
+</aside>
+
+<script>
+// ==== STAGE SYSTEM ====
+// Each stage defines base stats, caps, the image, the title, the zone, and
+// the evolution threshold.
+const STAGES = [
+  // L1-4
+  { lo: 1,  hi: 4,  img: 'evolution/L01_whelp_final.jpg',
+    title: 'Whelp', zone: 'Nursery',
+    base: { STR: 5,  VIT: 10, AGI: 8,  FER: 3,  INT: 6,  LCK: 10 },
+    cap:  { STR: 25, VIT: 30, AGI: 35, FER: 15, INT: 20, LCK: 40 },
+    name: 'Grokk the Whelp' },
+  // L5-9
+  { lo: 5,  hi: 9,  img: 'evolution/L05_pup_final.jpg',
+    title: 'Pup', zone: 'Tribe',
+    base: { STR: 15, VIT: 25, AGI: 18, FER: 8,  INT: 12, LCK: 18 },
+    cap:  { STR: 50, VIT: 60, AGI: 55, FER: 30, INT: 40, LCK: 60 },
+    name: 'Grokk the Pup' },
+  // L10-14
+  { lo: 10, hi: 14, img: 'evolution/L10_adolescent_final.jpg',
+    title: 'Adolescent', zone: 'Tribe',
+    base: { STR: 30, VIT: 50, AGI: 38, FER: 20, INT: 25, LCK: 28 },
+    cap:  { STR: 90, VIT: 100, AGI: 85, FER: 55, INT: 65, LCK: 80 },
+    name: 'Grokk the Young' },
+  // L15-19
+  { lo: 15, hi: 19, img: 'evolution/L15_warrior_final.jpg',
+    title: 'Warrior', zone: 'Camp',
+    base: { STR: 60, VIT: 80, AGI: 55, FER: 40, INT: 40, LCK: 40 },
+    cap:  { STR: 150, VIT: 160, AGI: 120, FER: 100, INT: 95, LCK: 110 },
+    name: 'Grokk Ironfang' },
+  // L20-29
+  { lo: 20, hi: 29, img: 'evolution/L20_champion_final.jpg',
+    title: 'Champion', zone: 'Camp',
+    base: { STR: 100, VIT: 130, AGI: 75, FER: 65, INT: 55, LCK: 55 },
+    cap:  { STR: 200, VIT: 230, AGI: 160, FER: 140, INT: 130, LCK: 145 },
+    name: 'Grokk Ironfang, Champion' },
+  // L30-39
+  { lo: 30, hi: 39, img: 'evolution/L30_elite_final.jpg',
+    title: 'Elite', zone: 'War',
+    base: { STR: 140, VIT: 170, AGI: 95, FER: 90, INT: 75, LCK: 70 },
+    cap:  { STR: 260, VIT: 290, AGI: 200, FER: 190, INT: 170, LCK: 180 },
+    name: 'Grokk the Elite' },
+  // L40-44
+  { lo: 40, hi: 44, img: 'evolution/L40_warlord_final.jpg',
+    title: 'Warlord', zone: 'War',
+    base: { STR: 180, VIT: 215, AGI: 115, FER: 120, INT: 100, LCK: 85 },
+    cap:  { STR: 330, VIT: 360, AGI: 250, FER: 250, INT: 220, LCK: 220 },
+    name: 'Warlord Grokk Ironfang' },
+  // L45-49
+  { lo: 45, hi: 49, img: 'evolution/L45_champion_final.jpg',
+    title: 'Ascendant', zone: 'Myth',
+    base: { STR: 230, VIT: 265, AGI: 135, FER: 155, INT: 125, LCK: 100 },
+    cap:  { STR: 400, VIT: 440, AGI: 300, FER: 320, INT: 280, LCK: 270 },
+    name: 'Grokk the Ascendant' },
+  // L50
+  { lo: 50, hi: 50, img: 'evolution/L50_legendary_final.jpg',
+    title: 'Legendary', zone: 'Myth', legend: true,
+    base: { STR: 290, VIT: 330, AGI: 160, FER: 200, INT: 155, LCK: 120 },
+    cap:  { STR: 480, VIT: 520, AGI: 360, FER: 400, INT: 340, LCK: 330 },
+    name: 'Grokk Ironfang, the Legendary' },
+];
+
+const TRAITS = [
+  { id: 'STR', label: 'Strength',     cls: 'str' },
+  { id: 'VIT', label: 'Vitality',     cls: 'vit' },
+  { id: 'AGI', label: 'Agility',      cls: 'agi' },
+  { id: 'FER', label: 'Ferocity',     cls: 'fer' },
+  { id: 'INT', label: 'Intelligence', cls: 'int' },
+  { id: 'LCK', label: 'Luck',         cls: 'lck' },
+];
+
+// ==== STATE ====
+let state = {
+  level: 1,
+  stageIdx: 0,
+  // current trait values (start at base)
+  stats: {},
+  invEvo: 1,
+  invPotion: { STR: 4, VIT: 3, AGI: 2, FER: 2, INT: 1, LCK: 3 },
+};
+
+function stageAt(level) {
+  for (let i = 0; i < STAGES.length; i++) {
+    if (level >= STAGES[i].lo && level <= STAGES[i].hi) return i;
+  }
+  return STAGES.length - 1;
+}
+
+function resetStatsForStage() {
+  // when stage changes, stats snap to at-least-base (keep trait investment)
+  const stage = STAGES[state.stageIdx];
+  TRAITS.forEach(t => {
+    const base = stage.base[t.id];
+    if (!state.stats[t.id] || state.stats[t.id] < base) {
+      state.stats[t.id] = base;
+    }
+  });
+}
+
+function potionGain(invested) {
+  // diminishing returns curve:
+  //   1-10 = +10, 11-25 = +5, 26-50 = +2, 51+ = +1
+  if (invested < 10) return 10;
+  if (invested < 25) return 5;
+  if (invested < 50) return 2;
+  return 1;
+}
+
+function usePotion(traitId) {
+  if (state.invPotion[traitId] <= 0) return;
+  const stage = STAGES[state.stageIdx];
+  const cap = stage.cap[traitId];
+  if (state.stats[traitId] >= cap) return;
+  // find how many have been invested via potions (roughly: stat - base)
+  const invested = Math.max(0, state.stats[traitId] - stage.base[traitId]);
+  const gain = potionGain(invested);
+  state.stats[traitId] = Math.min(cap, state.stats[traitId] + gain);
+  state.invPotion[traitId]--;
+  render();
+}
+
+function canEvolve() {
+  if (state.stageIdx >= STAGES.length - 1) return false;
+  if (state.invEvo < 1) return false;
+  const stage = STAGES[state.stageIdx];
+  // threshold: 2 traits at ≥ 60% of cap (L1→L5)
+  // For simplicity we use the same rule at every stage for the MVP.
+  const qualifying = TRAITS.filter(t =>
+    state.stats[t.id] >= stage.base[t.id] + 0.6 * (stage.cap[t.id] - stage.base[t.id])
+  );
+  return qualifying.length >= 2;
+}
+
+function evolve() {
+  if (!canEvolve()) return;
+  state.stageIdx++;
+  state.invEvo--;
+  state.level = STAGES[state.stageIdx].lo;
+  resetStatsForStage();
+  render();
+}
+
+function render() {
+  const stage = STAGES[state.stageIdx];
+
+  // image
+  const img = document.getElementById('stageImg');
+  if (img.src.split('/').pop() !== stage.img.split('/').pop()) {
+    img.src = stage.img;
+  }
+
+  // frame fx for legend
+  document.getElementById('stageFrame').classList.toggle(
+    'aura', !!stage.legend);
+
+  // titles
+  document.getElementById('champName').textContent = stage.name;
+  document.getElementById('champSub').textContent =
+    `Orc · Level ${state.level} · ${stage.zone}`;
+  const badge = document.getElementById('stageBadge');
+  badge.textContent = stage.title;
+  badge.classList.toggle('legend', !!stage.legend);
+  document.getElementById('levelDisplay').textContent =
+    'L' + String(state.level).padStart(2, '0');
+  document.getElementById('levelNum').textContent = state.level;
+  document.getElementById('zoneLabel').textContent = stage.zone;
+  document.getElementById('levelSlider').value = state.level;
+
+  // traits
+  const box = document.getElementById('traits');
+  box.innerHTML = '';
+  TRAITS.forEach(t => {
+    const row = document.createElement('div');
+    row.className = 'stat-row';
+    const cur = state.stats[t.id] || stage.base[t.id];
+    const cap = stage.cap[t.id];
+    const pct = Math.round((cur / cap) * 100);
+    const atCap = cur >= cap;
+
+    row.innerHTML = `
+      <div class="stat-icon icon-${t.cls}">${t.id}</div>
+      <div class="stat-info">
+        <div class="stat-label">${t.label}</div>
+        <div class="stat-value-row">
+          <span class="stat-value">${Math.round(cur)}</span>
+          <span class="stat-cap">/ ${cap}</span>
+        </div>
+        <div class="stat-bar">
+          <div class="stat-fill ${atCap ? 'at-cap' : ''}"
+               style="width: ${pct}%"></div>
+        </div>
+      </div>
+      <button class="use-btn" data-t="${t.id}"
+        ${state.invPotion[t.id] <= 0 || atCap ? 'disabled' : ''}>
+        +${state.invPotion[t.id]}
+      </button>
+    `;
+    box.appendChild(row);
+  });
+  box.querySelectorAll('.use-btn').forEach(btn => {
+    btn.addEventListener('click', () => usePotion(btn.dataset.t));
+  });
+
+  // evolve
+  const next = STAGES[state.stageIdx + 1];
+  const evoBtn = document.getElementById('evolveBtn');
+  const evoPanel = document.getElementById('evolvePanel');
+  if (next) {
+    document.getElementById('evolveTarget').textContent =
+      `${next.title} (L${next.lo})`;
+    document.getElementById('evolveReq').textContent =
+      'Requires 2 traits at ≥ 60% of ' + stage.title + ' cap.';
+    const ok = canEvolve();
+    evoBtn.disabled = !ok;
+    evoPanel.classList.toggle('evolve-ready', ok);
+    evoBtn.textContent = ok
+      ? `⚡ Evolve to ${next.title}`
+      : 'Evolve · costs 1 Orc Evolution Potion';
+  } else {
+    document.getElementById('evolveTarget').textContent = 'MAX FORM';
+    document.getElementById('evolveReq').textContent =
+      'You have reached the Legendary tier. Await future gameplay modes.';
+    evoBtn.disabled = true;
+    evoBtn.textContent = 'Legendary';
+  }
+
+  // inventory
+  document.getElementById('invEvo').textContent = state.invEvo;
+  TRAITS.forEach(t => {
+    const el = document.getElementById('inv' + t.id[0] + t.id.slice(1).toLowerCase());
+    if (el) el.textContent = state.invPotion[t.id];
+  });
+}
+
+// ==== wire up ====
+document.getElementById('levelSlider').addEventListener('input', (e) => {
+  state.level = +e.target.value;
+  state.stageIdx = stageAt(state.level);
+  resetStatsForStage();
+  render();
+});
+document.getElementById('evolveBtn').addEventListener('click', evolve);
+
+resetStatsForStage();
+render();
+</script>
+</body>
+</html>
