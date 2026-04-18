@@ -211,6 +211,174 @@
     pointer-events: none;
     max-width: 260px; white-space: normal;
   }
+
+  /* ============================================================
+     ANIMATION LAYER — potion-fly, burst, float-text, cinematic
+  ============================================================ */
+
+  /* flying potion from inventory to champion */
+  .potion-fly {
+    position: fixed; z-index: 600; pointer-events: none;
+    font-size: 28px; filter: drop-shadow(0 0 8px rgba(255,205,107,0.8));
+    transition: transform 0.9s cubic-bezier(.4, 0.8, .6, 1),
+                opacity 0.9s ease;
+  }
+
+  /* impact burst at champion */
+  .impact-burst {
+    position: fixed; z-index: 601; pointer-events: none;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(255,205,107,0.9), rgba(255,140,60,0.3) 50%, transparent 75%);
+    opacity: 0;
+  }
+  .impact-burst.fire { animation: impactBurst 0.9s ease-out; }
+  @keyframes impactBurst {
+    0%   { opacity: 0; transform: scale(0.3); }
+    30%  { opacity: 1; transform: scale(1.5); }
+    100% { opacity: 0; transform: scale(3.5); }
+  }
+
+  /* little particle dots sprayed on impact */
+  .spark {
+    position: fixed; z-index: 602; pointer-events: none;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #ffcd6b; opacity: 0;
+  }
+  .spark.fire { animation: sparkFire 0.9s ease-out; }
+  @keyframes sparkFire {
+    0%   { opacity: 1; transform: translate(0,0) scale(1); }
+    100% { opacity: 0;
+      transform: translate(var(--dx), var(--dy)) scale(0.2); }
+  }
+
+  /* floating "+5 STR" text */
+  .float-text {
+    position: fixed; z-index: 603; pointer-events: none;
+    font-size: 18px; font-weight: 800; letter-spacing: 1px;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(255,205,107,0.9),
+                 0 2px 4px rgba(0,0,0,0.8);
+    opacity: 0;
+  }
+  .float-text.rising {
+    animation: riseFade 1.2s ease-out;
+  }
+  @keyframes riseFade {
+    0%   { opacity: 0; transform: translate(-50%, 0); }
+    15%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -80px); }
+  }
+
+  /* bar-glow pulse when filling */
+  .evo-fill.pulse {
+    animation: fillPulse 0.6s ease-out;
+  }
+  @keyframes fillPulse {
+    0%,100% { box-shadow: 0 0 12px rgba(255,205,107,0.5); }
+    50%     { box-shadow: 0 0 28px rgba(255,205,107,1); }
+  }
+  .evo-fill.gate-ready {
+    animation: gateReady 1.8s infinite;
+  }
+  @keyframes gateReady {
+    0%,100% { box-shadow: 0 0 12px rgba(255,205,107,0.5); }
+    50%     { box-shadow: 0 0 36px rgba(255,142,107,1),
+                          0 0 64px rgba(255,205,107,0.6); }
+  }
+
+  /* champion frame shake on potion-land */
+  .stage-frame.hit {
+    animation: frameHit 0.5s ease-out;
+  }
+  @keyframes frameHit {
+    0%,100% { transform: translate(0,0); }
+    20%     { transform: translate(-2px, 1px); }
+    40%     { transform: translate(3px, -2px); }
+    60%     { transform: translate(-2px, 2px); }
+    80%     { transform: translate(2px, -1px); }
+  }
+
+  /* EVOLVE CINEMATIC — full-screen flash + stage cross-fade */
+  .cine-overlay {
+    position: fixed; inset: 0; z-index: 700;
+    background: radial-gradient(ellipse at center,
+      rgba(255,205,107,0.9), rgba(255,140,60,0.7) 40%, rgba(10,6,8,0.9) 80%);
+    opacity: 0; pointer-events: none;
+  }
+  .cine-overlay.active {
+    animation: cineFlash 2.2s forwards;
+  }
+  @keyframes cineFlash {
+    0%   { opacity: 0; }
+    15%  { opacity: 1; }
+    50%  { opacity: 0.8; }
+    100% { opacity: 0; }
+  }
+  .cine-banner {
+    position: fixed; left: 50%; top: 40%;
+    transform: translate(-50%, -50%) scale(0.5);
+    z-index: 701; font-size: 56px; font-weight: 900;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: #fff; text-shadow:
+      0 0 20px rgba(255,205,107,1),
+      0 0 40px rgba(255,140,60,0.8),
+      0 0 80px rgba(255,100,40,0.6);
+    opacity: 0; pointer-events: none;
+  }
+  .cine-banner.active {
+    animation: bannerBurst 2.2s cubic-bezier(.3,0.2,.4,1) forwards;
+  }
+  @keyframes bannerBurst {
+    0%   { opacity: 0; transform: translate(-50%,-50%) scale(0.3); }
+    25%  { opacity: 1; transform: translate(-50%,-50%) scale(1.2); }
+    50%  { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    85%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%,-50%) scale(1.1); }
+  }
+  .cine-subtext {
+    position: fixed; left: 50%; top: 52%;
+    transform: translate(-50%, 0);
+    z-index: 701; font-size: 16px; letter-spacing: 2px;
+    color: var(--accent); opacity: 0;
+    text-transform: uppercase; font-weight: 700;
+  }
+  .cine-subtext.active {
+    animation: subtextFade 2.2s forwards;
+  }
+  @keyframes subtextFade {
+    0%, 30% { opacity: 0; }
+    50%     { opacity: 1; }
+    80%     { opacity: 1; }
+    100%    { opacity: 0; }
+  }
+
+  /* allocation potion modal */
+  .alloc-row {
+    display: grid; grid-template-columns: 40px 1fr 40px;
+    align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .alloc-row .alloc-label {
+    font-size: 11px; color: var(--muted);
+    text-transform: uppercase; font-weight: 700;
+  }
+  .alloc-row input[type=range] {
+    width: 100%; accent-color: var(--accent);
+  }
+  .alloc-row .alloc-val {
+    color: var(--accent); font-weight: 700; font-size: 14px;
+    text-align: right;
+  }
+  .alloc-remaining {
+    text-align: center; padding: 10px;
+    background: rgba(40,20,10,0.4);
+    border: 1px solid var(--border); border-radius: 6px;
+    margin-bottom: 14px; font-size: 12px;
+    text-transform: uppercase; color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .alloc-remaining b {
+    color: var(--accent); font-size: 22px; font-weight: 800; }
   .trait-bar { height: 4px; background: #1a0e10;
     border-radius: 2px; overflow: hidden; margin-top: 3px; }
   .trait-fill { height: 100%;
@@ -359,7 +527,10 @@
   <div class="card">
     <div class="card-title">Potion Inventory (Orc-locked NFTs)</div>
     <div class="potion-row hot"><span class="name">Evolution Potion</span><span class="count" id="invEvo">2</span></div>
-    <div class="potion-row"><span class="name">Allocation Potion (40pts)</span><span class="count" id="invAlloc">1</span></div>
+    <div class="potion-row" id="allocPotionRow" style="cursor:pointer;"
+         title="Click to open allocation modal">
+      <span class="name">✨ Allocation Potion (40pts)</span>
+      <span class="count" id="invAlloc">1</span></div>
     <div class="potion-row"><span class="name">STR · Minor (+5)</span><span class="count" id="invSTR">6</span></div>
     <div class="potion-row"><span class="name">VIT · Minor (+5)</span><span class="count" id="invVIT">4</span></div>
     <div class="potion-row"><span class="name">AGI · Minor (+5)</span><span class="count" id="invAGI">2</span></div>
@@ -374,6 +545,29 @@
   <button class="action-btn" id="leaderboardBtn">🏆 Leaderboard</button>
   <button class="action-btn" onclick="alert('⚔️ Arena — async stat battles coming soon. Two champions enter, deterministic winner based on stats + species affinity.')">⚔️ Arena</button>
   <button class="action-btn primary" id="animateBtn">✨ Animate Champion</button>
+</div>
+
+<!-- evolve cinematic overlay -->
+<div class="cine-overlay" id="cineOverlay"></div>
+<div class="cine-banner" id="cineBanner">EVOLVED</div>
+<div class="cine-subtext" id="cineSubtext"></div>
+
+<!-- allocation potion modal -->
+<div class="modal-backdrop" id="allocModal">
+  <div class="modal" style="width: 420px;">
+    <h3>✨ Allocation Potion</h3>
+    <div class="sub">Distribute 40 points across your traits. Caps still
+      apply — surplus returns to essence.</div>
+    <div class="alloc-remaining">
+      Points left: <b id="allocLeft">40</b>
+    </div>
+    <div id="allocRows"></div>
+    <div style="display:flex; gap:8px;">
+      <button class="btn-primary" id="allocApply" style="flex:1;">Apply</button>
+      <button class="btn-primary" id="allocCancel"
+        style="flex:0.3; background:#2a1a22; color:var(--muted); border:1px solid var(--border);">Cancel</button>
+    </div>
+  </div>
 </div>
 
 <div class="modal-backdrop" id="leaderboardModal">
@@ -528,7 +722,105 @@ function atGate() {
 
 function randFill(lo, hi) { return lo + Math.random()*(hi-lo); }
 
-function usePotion(trait) {
+// ===== ANIMATION HELPERS =====
+
+function potionFlyAndBurst(sourceEl, onImpact) {
+  const source = sourceEl.getBoundingClientRect();
+  const target = document.getElementById('stageFrame').getBoundingClientRect();
+  const tx = target.left + target.width / 2;
+  const ty = target.top + target.height * 0.45;
+
+  // flying potion emoji
+  const potion = document.createElement('div');
+  potion.className = 'potion-fly';
+  potion.textContent = '🧪';
+  potion.style.left = (source.left + source.width/2) + 'px';
+  potion.style.top = (source.top + source.height/2) + 'px';
+  potion.style.transform = 'translate(-50%,-50%)';
+  document.body.appendChild(potion);
+
+  requestAnimationFrame(() => {
+    const dx = tx - (source.left + source.width/2);
+    const dy = ty - (source.top + source.height/2);
+    potion.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(1.4) rotate(360deg)`;
+  });
+
+  setTimeout(() => {
+    potion.remove();
+    // burst
+    const burst = document.createElement('div');
+    burst.className = 'impact-burst fire';
+    burst.style.left = (tx - 30) + 'px';
+    burst.style.top = (ty - 30) + 'px';
+    document.body.appendChild(burst);
+    setTimeout(() => burst.remove(), 900);
+
+    // sparks
+    for (let k = 0; k < 10; k++) {
+      const s = document.createElement('div');
+      s.className = 'spark fire';
+      s.style.left = tx + 'px';
+      s.style.top = ty + 'px';
+      const ang = (k / 10) * Math.PI * 2;
+      const dist = 60 + Math.random() * 40;
+      s.style.setProperty('--dx', Math.cos(ang) * dist + 'px');
+      s.style.setProperty('--dy', Math.sin(ang) * dist + 'px');
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 900);
+    }
+
+    // frame shake
+    const f = document.getElementById('stageFrame');
+    f.classList.remove('hit'); void f.offsetWidth; f.classList.add('hit');
+
+    if (onImpact) onImpact(tx, ty);
+  }, 800);
+}
+
+function floatText(text, x, y, color) {
+  const el = document.createElement('div');
+  el.className = 'float-text rising';
+  el.textContent = text;
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  if (color) el.style.color = color;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1200);
+}
+
+function pulseBar() {
+  const fill = document.getElementById('evoFill');
+  fill.classList.remove('pulse'); void fill.offsetWidth;
+  fill.classList.add('pulse');
+}
+
+function countUpText(el, from, to, dur = 500) {
+  const start = performance.now();
+  (function tick(now) {
+    const t = Math.min(1, (now - start) / dur);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const val = from + (to - from) * eased;
+    el.textContent = Math.round(val);
+    if (t < 1) requestAnimationFrame(tick);
+  })(performance.now());
+}
+
+function showCinematic(title, subtitle) {
+  const o = document.getElementById('cineOverlay');
+  const b = document.getElementById('cineBanner');
+  const s = document.getElementById('cineSubtext');
+  b.textContent = title;
+  s.textContent = subtitle;
+  [o, b, s].forEach(el => {
+    el.classList.remove('active'); void el.offsetWidth;
+    el.classList.add('active');
+  });
+  setTimeout(() => [o, b, s].forEach(el => el.classList.remove('active')), 2300);
+}
+
+// ===== CORE POTION LOGIC =====
+
+function usePotion(trait, sourceEl) {
   if (state.inv[trait] <= 0) return;
   const i = TRAITS.indexOf(trait);
   const cap = STAGE_CAPS[state.stageIdx][i];
@@ -537,12 +829,35 @@ function usePotion(trait) {
   const floor = STAGE_FLOORS[state.stageIdx][i];
   const invested = Math.max(0, state.stats[trait] - floor);
   let gain = invested < 10 ? 5 : invested < 25 ? 3 : invested < 50 ? 1.5 : 1;
+  const oldVal = state.stats[trait];
   state.stats[trait] = Math.min(cap, state.stats[trait] + gain);
+  const actualGain = state.stats[trait] - oldVal;
   state.inv[trait]--;
 
-  // bar fill (random 2-6%)
-  tickEvo(randFill(2, 6));
-  render();
+  const fillAmount = randFill(2, 6);
+  const oldPct = state.evoPct;
+  tickEvo(fillAmount);
+  const newPct = state.evoPct;
+
+  // animate: fly → burst → float text + bar pulse + stat count-up
+  potionFlyAndBurst(sourceEl || document.body, (tx, ty) => {
+    floatText(`+${Math.round(actualGain)} ${trait}`, tx, ty - 20);
+    pulseBar();
+    // animate bar fill
+    const fill = document.getElementById('evoFill');
+    fill.style.width = newPct + '%';
+    // count up the evo % label
+    countUpText(document.getElementById('evoPct'),
+      Math.round(oldPct), Math.round(newPct), 700);
+  });
+
+  // re-render side panel inventory after a small delay so animation is visible
+  setTimeout(() => render(), 300);
+}
+
+function useAllocationPotion(sourceEl) {
+  if (state.inv.alloc <= 0) return;
+  openAllocModal(sourceEl);
 }
 
 function tickEvo(amount) {
@@ -572,7 +887,84 @@ function evolve() {
   state.evoPct = 0;
   state.evoMaxLevel = GATE_LEVELS[state.stageIdx] || 50;
   initStats();
-  render();
+
+  const newStage = STAGES[state.stageIdx];
+  showCinematic('EVOLVED', `${newStage.name.toUpperCase()} · ${newStage.zone.toUpperCase()}`);
+
+  // wait until cinematic peak before swapping image
+  setTimeout(() => render(), 400);
+}
+
+// ===== ALLOCATION MODAL =====
+let allocState = null;
+function openAllocModal(sourceEl) {
+  if (state.inv.alloc <= 0) return;
+  allocState = { values: {}, remaining: 40, sourceEl };
+  TRAITS.forEach(t => allocState.values[t] = 0);
+  const rows = document.getElementById('allocRows');
+  rows.innerHTML = '';
+  TRAITS.forEach(t => {
+    const idx = TRAITS.indexOf(t);
+    const cur = state.stats[t] || STAGE_FLOORS[state.stageIdx][idx];
+    const cap = STAGE_CAPS[state.stageIdx][idx];
+    const maxAllowed = Math.min(40, cap - cur);
+    rows.insertAdjacentHTML('beforeend',
+      `<div class="alloc-row">
+        <div class="alloc-label" style="color:var(--${t.toLowerCase()}-color,var(--accent));">${t}</div>
+        <input type="range" min="0" max="${maxAllowed}" value="0" data-t="${t}" />
+        <div class="alloc-val" id="av-${t}">0</div>
+      </div>`);
+  });
+  rows.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', () => {
+      const trait = inp.dataset.t;
+      allocState.values[trait] = +inp.value;
+      updateAllocRemaining();
+    });
+  });
+  updateAllocRemaining();
+  document.getElementById('allocModal').classList.add('open');
+}
+function updateAllocRemaining() {
+  const sum = Object.values(allocState.values).reduce((a,b)=>a+b, 0);
+  allocState.remaining = 40 - sum;
+  document.getElementById('allocLeft').textContent = allocState.remaining;
+  // update value labels + clamp sliders to what's available
+  TRAITS.forEach(t => {
+    document.getElementById('av-' + t).textContent = allocState.values[t];
+  });
+  document.getElementById('allocApply').disabled = allocState.remaining < 0;
+}
+function applyAllocation() {
+  if (!allocState) return;
+  const src = allocState.sourceEl;
+  state.inv.alloc--;
+  // apply each trait with animation
+  const totalFill = randFill(10, 25);
+  tickEvo(totalFill);
+
+  potionFlyAndBurst(src || document.body, (tx, ty) => {
+    let offset = 0;
+    TRAITS.forEach(t => {
+      const gain = allocState.values[t];
+      if (gain > 0) {
+        const idx = TRAITS.indexOf(t);
+        const cap = STAGE_CAPS[state.stageIdx][idx];
+        state.stats[t] = Math.min(cap, (state.stats[t] || STAGE_FLOORS[state.stageIdx][idx]) + gain);
+        setTimeout(() => floatText(`+${gain} ${t}`, tx, ty - offset), offset * 8);
+        offset += 24;
+      }
+    });
+    pulseBar();
+    document.getElementById('evoFill').style.width = state.evoPct + '%';
+  });
+
+  closeAllocModal();
+  setTimeout(() => render(), 300);
+}
+function closeAllocModal() {
+  document.getElementById('allocModal').classList.remove('open');
+  allocState = null;
 }
 
 // ============================================================
@@ -675,7 +1067,9 @@ function render() {
 
   const next = STAGES[state.stageIdx + 1];
   document.getElementById('evoPct').textContent = Math.round(state.evoPct);
-  document.getElementById('evoFill').style.width = state.evoPct + '%';
+  const fill = document.getElementById('evoFill');
+  fill.style.width = state.evoPct + '%';
+  fill.classList.toggle('gate-ready', canEvolve());
   document.getElementById('evoToLabel').textContent =
     next ? `→ ${next.name} (L${next.minLevel})` : 'MAX FORM';
   document.getElementById('nextStageInfo').textContent =
@@ -714,7 +1108,7 @@ function render() {
       </div>`);
   });
   tBox.querySelectorAll('.trait-use').forEach(b =>
-    b.addEventListener('click', () => usePotion(b.dataset.t)));
+    b.addEventListener('click', () => usePotion(b.dataset.t, b)));
   // wire help dots
   tBox.querySelectorAll('.info-dot').forEach(dot => {
     dot.addEventListener('click', ev => {
@@ -795,6 +1189,11 @@ document.getElementById('animateBtn').addEventListener('click', () => {
 });
 document.getElementById('leaderboardBtn').addEventListener('click', showLeaderboard);
 document.getElementById('lbCloseBtn').addEventListener('click', closeLeaderboard);
+document.getElementById('allocPotionRow').addEventListener('click', (e) => {
+  useAllocationPotion(e.currentTarget);
+});
+document.getElementById('allocApply').addEventListener('click', applyAllocation);
+document.getElementById('allocCancel').addEventListener('click', closeAllocModal);
 document.getElementById('globalRankBar').addEventListener('click', showLeaderboard);
 document.querySelectorAll('.lb-filter').forEach(btn => {
   btn.addEventListener('click', () => {
