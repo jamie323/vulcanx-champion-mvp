@@ -28,7 +28,7 @@
       radial-gradient(ellipse at top, #20101a 0%, #0a0608 60%),
       #050305;
   }
-  body { display: grid; grid-template-columns: 1fr 420px;
+  body { display: grid; grid-template-columns: 300px 1fr 400px;
     min-height: 100vh; }
 
   .topbar {
@@ -68,7 +68,7 @@
 
   /* bloodline sub-picker */
   .bloodline-bar {
-    position: fixed; top: 52px; left: 0; right: 420px;
+    position: fixed; top: 52px; left: 0; right: 400px;
     height: 38px; padding: 6px 16px;
     background: linear-gradient(180deg, rgba(20,14,20,0.95), rgba(20,14,20,0.7));
     border-bottom: 1px solid var(--border);
@@ -89,8 +89,51 @@
   .bl-btn.active { background: rgba(255,142,107,0.15);
     border-color: var(--legend); color: var(--legend); }
 
+  /* left info panel */
+  .info-panel {
+    padding: 110px 18px 180px;
+    background: linear-gradient(180deg, rgba(20,14,20,0.5), rgba(10,6,8,0.3));
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    height: 100vh;
+  }
+  .info-panel .info-card {
+    background: linear-gradient(135deg, rgba(40,20,10,0.4), rgba(20,12,20,0.7));
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 14px;
+  }
+  .info-panel .label {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent-dim); font-weight: 700; margin-bottom: 6px;
+  }
+  .info-panel .big-value {
+    font-size: 20px; font-weight: 700; color: var(--accent);
+    letter-spacing: 0.3px; margin-bottom: 3px;
+  }
+  .info-panel .zone-pill {
+    display: inline-block;
+    padding: 3px 10px; border-radius: 12px;
+    background: rgba(255,205,107,0.1);
+    border: 1px solid var(--border-glow);
+    font-size: 10px; letter-spacing: 1.5px;
+    color: var(--accent); text-transform: uppercase;
+    font-weight: 700;
+  }
+  .info-panel .stage-lore {
+    font-size: 12px; line-height: 1.55;
+    color: var(--muted); margin-top: 8px;
+  }
+  .info-panel .lvl-big {
+    font-size: 44px; font-weight: 800; line-height: 1;
+    color: var(--accent); letter-spacing: 1px;
+  }
+  .info-panel .lvl-of {
+    font-size: 12px; color: var(--muted);
+    margin-top: 4px; letter-spacing: 1px;
+  }
+
   main { display: flex; flex-direction: column; align-items: center;
-    padding: 110px 20px 180px; position: relative; min-height: 100vh; }
+    padding: 110px 20px 0px; position: relative; min-height: 100vh; }
 
   .stage-frame { position: relative;
     width: min(460px, 60vh * (1024/1536));
@@ -119,7 +162,7 @@
     font-size: 11px; letter-spacing: 3px; text-transform: uppercase; }
   .stage-name b { color: var(--accent); font-weight: 700; }
 
-  .stage-strip { margin-top: 14px; width: min(640px, 92%);
+  .stage-strip { margin: 16px 0 10px; width: min(680px, 100%);
     display: grid; grid-template-columns: repeat(9,1fr); gap: 4px; }
   .stage-slot { aspect-ratio: 0.7;
     background: var(--panel2); border: 1px solid var(--border);
@@ -425,11 +468,12 @@
   .potion-row .count { color: var(--text); font-weight: 700; }
   .potion-row.hot .count { color: var(--legend); }
 
-  .actions { position: fixed; bottom: 0; left: 0;
-    width: calc(100% - 420px);
-    background: linear-gradient(180deg,transparent,rgba(10,6,8,0.95));
-    padding: 16px; display: flex; gap: 10px;
-    justify-content: center; z-index: 50; }
+  .actions { position: fixed; bottom: 0; left: 300px;
+    width: calc(100% - 300px - 400px);
+    background: linear-gradient(180deg,transparent,rgba(10,6,8,0.98) 30%);
+    padding: 20px 16px 18px; display: flex; gap: 10px; flex-wrap: wrap;
+    justify-content: center; z-index: 50;
+    border-top: 1px solid var(--border); }
   .action-btn { padding: 12px 22px; background: rgba(40,22,12,0.85);
     border: 1px solid var(--border); border-radius: 26px;
     font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
@@ -507,6 +551,31 @@
   <span id="bloodlineBtns"></span>
 </div>
 
+<!-- LEFT INFO PANEL -->
+<div class="info-panel" id="infoPanel">
+  <div class="info-card">
+    <div class="label">Current Stage</div>
+    <div class="big-value" id="infoStageName">Whelp</div>
+    <span class="zone-pill" id="infoZone">Nursery</span>
+    <div class="stage-lore" id="infoLore">
+      A newly-hatched whelp — tiny, fragile, with eyes already carrying the spark of their bloodline.
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="label">Level Progress</div>
+    <div class="lvl-big" id="infoLevel">L01</div>
+    <div class="lvl-of">of L50 <span id="infoGateHint" style="color:var(--accent);"></span></div>
+  </div>
+
+  <div class="info-card">
+    <div class="label">Bloodline Story</div>
+    <div class="stage-lore" id="infoBloodlineLore">
+      Every champion is uniquely owned. Your bloodline determines both the visual path and trait affinities. Same species, different souls.
+    </div>
+  </div>
+</div>
+
 <main>
   <div class="stage-frame" id="stageFrame">
     <img id="stageImg" src="evolution/L01_whelp_final.jpg" />
@@ -514,7 +583,6 @@
     <div class="level-badge" id="levelBadge">L 01</div>
     <div class="rank-pill" id="rankPill">Iron III</div>
   </div>
-  <div class="stage-name" id="stageName">STAGE: <b>WHELP</b> · NURSERY</div>
   <div class="stage-strip" id="stageStrip"></div>
 </main>
 
@@ -1026,8 +1094,36 @@ function render() {
     state.rank.tier + ' ' + state.rank.division;
   document.getElementById('rankText').textContent =
     state.rank.tier + ' ' + state.rank.division;
-  document.getElementById('stageName').innerHTML =
-    `STAGE: <b>${stage.name.toUpperCase()}</b> · ${stage.zone}`;
+  // Populate left info panel
+  const infoStage = document.getElementById('infoStageName');
+  if (infoStage) {
+    infoStage.textContent = stage.name;
+    document.getElementById('infoZone').textContent = stage.zone;
+    document.getElementById('infoLevel').textContent =
+      'L' + String(state.level).padStart(2, '0');
+    const nextStage = STAGES[state.stageIdx + 1];
+    document.getElementById('infoGateHint').textContent =
+      nextStage ? `· next: ${nextStage.name} (L${nextStage.minLevel})` : '· legendary';
+
+    // build a simple stage-lore line
+    const loreMap = {
+      0: 'A newly-hatched whelp — tiny, fragile, but already carrying the spark of its bloodline in its eyes.',
+      1: 'Small, scrappy, defiant — the first real form. Fists clenched, ready to grow.',
+      2: 'Adolescent growth spurt — lanky limbs, first markings, burning to prove itself.',
+      3: 'A disciplined young warrior. Armor still basic, but the silhouette is unmistakable.',
+      4: 'A champion of the clan. Tested in a hundred fights, respected, feared.',
+      5: 'Elite veteran — scars chart the journey, armor earned through battle.',
+      6: 'Warlord — commands others, feared across the region.',
+      7: 'Ascendant. Almost mythic. Arcane power emerging.',
+      8: 'LEGENDARY. The ultimate evolution. Flex-card tier. One-of-a-kind.',
+    };
+    document.getElementById('infoLore').textContent =
+      loreMap[state.stageIdx] || '';
+    document.getElementById('infoBloodlineLore').textContent =
+      `${SPECIES[currentSpecies].label} — ${SPECIES[currentSpecies].archetype} archetype. ` +
+      `${SPECIES[currentSpecies].bloodlines[currentBloodline].label} bloodline. ` +
+      `Each of your ${SPECIES[currentSpecies].label.toLowerCase()}s has a unique DNA path — face, markings, inherited object — that persists through all 50 levels.`;
+  }
 
   const speciesCfg = SPECIES[currentSpecies];
   const bloodlineCfg = speciesCfg.bloodlines[currentBloodline];
