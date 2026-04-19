@@ -1592,21 +1592,26 @@ document.querySelectorAll('.sp-btn').forEach(btn => {
   });
 });
 document.getElementById('evolveBtn').addEventListener('click', evolve);
-document.getElementById('animateBtn').addEventListener('click', () => {
+function bindIf(id, event, handler) {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener(event, handler);
+}
+
+bindIf('animateBtn', 'click', () => {
   if (state.stageIdx >= 8) {
-    alert('✨ Animate flow (demo): would call Kling / Luma image-to-video API on your L50 champion.\n\nCost: 400 Essence (earned currency).\nResult: unique 5-second looping MP4, cached forever per champion NFT, auto-plays on your profile and social cards.');
+    alert('✨ Animate flow (demo): would call Kling / Luma image-to-video API on your L50 champion.\n\nCost: 5 PYR.\nResult: unique 5-second looping MP4, cached forever per champion NFT, auto-plays on your profile and social cards.');
   } else {
     alert('✨ Animate unlocks at L50 Legendary tier. In this demo you can click any stage in the strip below to preview it — try jumping to the Legendary stage.');
   }
 });
-document.getElementById('leaderboardBtn').addEventListener('click', showLeaderboard);
-document.getElementById('lbCloseBtn').addEventListener('click', closeLeaderboard);
-document.getElementById('allocPotionRow').addEventListener('click', (e) => {
+bindIf('leaderboardBtn', 'click', showLeaderboard);
+bindIf('lbCloseBtn', 'click', closeLeaderboard);
+bindIf('allocPotionRow', 'click', (e) => {
   useAllocationPotion(e.currentTarget);
 });
-document.getElementById('allocApply').addEventListener('click', applyAllocation);
-document.getElementById('allocCancel').addEventListener('click', closeAllocModal);
-document.getElementById('globalRankBar').addEventListener('click', showLeaderboard);
+bindIf('allocApply', 'click', applyAllocation);
+bindIf('allocCancel', 'click', closeAllocModal);
+bindIf('globalRankBar', 'click', showLeaderboard);
 document.querySelectorAll('.lb-filter').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.lb-filter').forEach(b => b.classList.remove('active'));
