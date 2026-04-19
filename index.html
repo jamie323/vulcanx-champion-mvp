@@ -66,8 +66,31 @@
   .sp-btn.active { background: rgba(255,205,107,0.15);
     border-color: var(--accent); color: var(--accent); }
 
+  /* bloodline sub-picker */
+  .bloodline-bar {
+    position: fixed; top: 52px; left: 0; right: 420px;
+    height: 38px; padding: 6px 16px;
+    background: linear-gradient(180deg, rgba(20,14,20,0.95), rgba(20,14,20,0.7));
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+    z-index: 98; font-size: 11px; color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .bloodline-bar .lbl {
+    text-transform: uppercase; font-weight: 700; margin-right: 6px;
+  }
+  .bl-btn {
+    padding: 4px 10px; background: rgba(40,20,10,0.5);
+    border: 1px solid var(--border); border-radius: 10px;
+    font-size: 11px; font-weight: 700; cursor: pointer;
+    color: var(--muted); letter-spacing: 0.5px;
+  }
+  .bl-btn:hover { color: var(--text); }
+  .bl-btn.active { background: rgba(255,142,107,0.15);
+    border-color: var(--legend); color: var(--legend); }
+
   main { display: flex; flex-direction: column; align-items: center;
-    padding: 72px 20px 180px; position: relative; min-height: 100vh; }
+    padding: 110px 20px 180px; position: relative; min-height: 100vh; }
 
   .stage-frame { position: relative;
     width: min(460px, 60vh * (1024/1536));
@@ -478,6 +501,12 @@
   </div>
 </div>
 
+<!-- bloodline sub-picker -->
+<div class="bloodline-bar" id="bloodlineBar">
+  <span class="lbl">Bloodline:</span>
+  <span id="bloodlineBtns"></span>
+</div>
+
 <main>
   <div class="stage-frame" id="stageFrame">
     <img id="stageImg" src="evolution/L01_whelp_final.jpg" />
@@ -606,113 +635,11 @@
 </style>
 
 <script>
-const SPECIES = {
-  orc: {
-    label: 'Orc',
-    archetype: 'Brute',
-    nameByStage: [
-      'Grokk the Whelp', 'Grokk the Pup', 'Grokk the Young',
-      'Grokk Ironfang', 'Grokk Ironfang', 'Grokk Elite',
-      'Warlord Grokk', 'Grokk the Ascendant', 'Grokk Ironfang, the Legendary',
-    ],
-    stages: [
-      { name:'Whelp',      minLevel:1,  zone:'Nursery', img:'evolution/L01_whelp_final.jpg' },
-      { name:'Pup',        minLevel:5,  zone:'Tribe',   img:'evolution/L05_pup_final.jpg' },
-      { name:'Adolescent', minLevel:10, zone:'Tribe',   img:'evolution/L10_adolescent_final.jpg' },
-      { name:'Warrior',    minLevel:15, zone:'Camp',    img:'evolution/L15_warrior_final.jpg' },
-      { name:'Champion',   minLevel:20, zone:'Camp',    img:'evolution/L20_champion_final.jpg' },
-      { name:'Elite',      minLevel:30, zone:'War',     img:'evolution/L30_elite_final.jpg' },
-      { name:'Warlord',    minLevel:40, zone:'War',     img:'evolution/L40_warlord_final.jpg' },
-      { name:'Ascendant',  minLevel:45, zone:'Myth',    img:'evolution/L45_champion_final.jpg' },
-      { name:'Legendary',  minLevel:50, zone:'Myth',    img:'evolution/L50_legendary_final.jpg', legend:true },
-    ],
-  },
-  elf: {
-    label: 'Elf',
-    archetype: 'Druid',
-    nameByStage: [
-      'Silvanas the Elfling', 'Silvanas Sprite', 'Silvanas Acolyte',
-      'Silvanas Archer', 'Silvanas Warden', 'Silvanas Templar',
-      'Silvanas Sage', 'Silvanas Highborn', 'Silvanas, Archdruid of the Eldertree',
-    ],
-    stages: [
-      { name:'Elfling',    minLevel:1,  zone:'Nursery', img:'evolution/elf_L01_elfling_final.jpg' },
-      { name:'Sprite',     minLevel:5,  zone:'Tribe',   img:'evolution/elf_L05_sprite_final.jpg' },
-      { name:'Acolyte',    minLevel:10, zone:'Tribe',   img:'evolution/elf_L10_acolyte_final.jpg' },
-      { name:'Archer',     minLevel:15, zone:'Camp',    img:'evolution/elf_L15_archer_final.jpg' },
-      { name:'Warden',     minLevel:20, zone:'Camp',    img:'evolution/elf_L20_warden_final.jpg' },
-      { name:'Templar',    minLevel:30, zone:'War',     img:'evolution/elf_L30_templar_final.jpg' },
-      { name:'Sage',       minLevel:40, zone:'War',     img:'evolution/elf_L40_sage_final.jpg' },
-      { name:'Highborn',   minLevel:45, zone:'Myth',    img:'evolution/elf_L45_highborn_final.jpg' },
-      { name:'Archdruid',  minLevel:50, zone:'Myth',    img:'evolution/elf_L50_archdruid_final.jpg', legend:true },
-    ],
-  },
-  demon: {
-    label: 'Hellknight',
-    archetype: 'Pyromancer',
-    nameByStage: [
-      'Kaelith the Emberling', 'Kaelith Cinderkin', 'Kaelith Ashblood',
-      'Kaelith Flamebound', 'Kaelith Hellrider', 'Kaelith the Brandlord',
-      'Kaelith, Infernal Knight', 'Kaelith, Abyssal Knight',
-      'Kaelith, Hellknight Overlord',
-    ],
-    stages: [
-      { name:'Emberling',   minLevel:1,  zone:'Volcanic Nursery', img:'evolution/demon_infernal_L01_emberling_final.jpg' },
-      { name:'Cinderkin',   minLevel:5,  zone:'Basalt Village',  img:'evolution/demon_infernal_L05_cinderkin_final.jpg' },
-      { name:'Ashblood',    minLevel:10, zone:'Training Arena',  img:'evolution/demon_infernal_L10_ashblood_final.jpg' },
-      { name:'Flamebound',  minLevel:15, zone:'Ashen Ground',    img:'evolution/demon_infernal_L15_flamebound_final.jpg' },
-      { name:'Hellrider',   minLevel:20, zone:'Canyon of Embers',img:'evolution/demon_infernal_L20_hellrider_final.jpg' },
-      { name:'Brandlord',   minLevel:30, zone:'Cathedral',       img:'evolution/demon_infernal_L30_brandlord_final.jpg' },
-      { name:'Infernal Knight', minLevel:40, zone:'Warcamp',     img:'evolution/demon_infernal_L40_infernalknight_final.jpg' },
-      { name:'Abyssal Knight',  minLevel:45, zone:'Obsidian Tower',img:'evolution/demon_infernal_L45_abyssalknight_final.jpg' },
-      { name:'Hellknight Overlord', minLevel:50, zone:'Throne of the Caldera', img:'evolution/demon_infernal_L50_hellknightoverlord_final.jpg', legend:true },
-    ],
-  },
-  drakkin: {
-    label: 'Drakkin',
-    archetype: 'Elemental',
-    nameByStage: [
-      'Vorthrax Wyrmling', 'Vorthrax Fledgling', 'Vorthrax Scaleborn',
-      'Vorthrax Drakewarden', 'Vorthrax Drakonid', 'Vorthrax Scalelord',
-      'Vorthrax Drakelord', 'Vorthrax Primordial',
-      'Vorthrax, Drakelord Primordial',
-    ],
-    stages: [
-      { name:'Wyrmling',    minLevel:1,  zone:'Dragon Nest',    img:'evolution/drakkin_emberscale_L01_wyrmling_final.jpg' },
-      { name:'Fledgling',   minLevel:5,  zone:'Mountain Aerie', img:'evolution/drakkin_emberscale_L05_fledgling_final.jpg' },
-      { name:'Scaleborn',   minLevel:10, zone:'Clan Lodge',     img:'evolution/drakkin_emberscale_L10_scaleborn_final.jpg' },
-      { name:'Drakewarden', minLevel:15, zone:'High Plateau',   img:'evolution/drakkin_emberscale_L15_drakewarden_final.jpg' },
-      { name:'Drakonid',    minLevel:20, zone:'Monastery',      img:'evolution/drakkin_emberscale_L20_drakonid_final.jpg' },
-      { name:'Scalelord',   minLevel:30, zone:'Volcanic Field', img:'evolution/drakkin_emberscale_L30_scalelord_final.jpg' },
-      { name:'Drakelord',   minLevel:40, zone:'Crater Rim',     img:'evolution/drakkin_emberscale_L40_drakelord_final.jpg' },
-      { name:'Primordial',  minLevel:45, zone:'Elemental Shrine',img:'evolution/drakkin_emberscale_L45_primordial_final.jpg' },
-      { name:'Drakelord Primordial', minLevel:50, zone:'World\\'s Peak', img:'evolution/drakkin_emberscale_L50_drakelordprimordial_final.jpg', legend:true },
-    ],
-  },
-  goblin: {
-    label: 'Goblin',
-    archetype: 'Rogue',
-    nameByStage: [
-      'Gribnit Scraggling', 'Gribnit Snipper', 'Gribnit Scout',
-      'Gribnit Raider', 'Gribnit Chief', 'Gribnit Warboss',
-      'Gribnit Overlord', 'Gribnit Gloomking', 'Gribnit, the Warchief',
-    ],
-    stages: [
-      { name:'Scraggling', minLevel:1,  zone:'Warren',  img:'evolution/goblin_L01_scraggling_final.jpg' },
-      { name:'Snipper',    minLevel:5,  zone:'Tribe',   img:'evolution/goblin_L05_snipper_final.jpg' },
-      { name:'Scout',      minLevel:10, zone:'Swamp',   img:'evolution/goblin_L10_scout_final.jpg' },
-      { name:'Raider',     minLevel:15, zone:'Camp',    img:'evolution/goblin_L15_raider_final.jpg' },
-      { name:'Chief',      minLevel:20, zone:'Camp',    img:'evolution/goblin_L20_chief_final.jpg' },
-      { name:'Warboss',    minLevel:30, zone:'Raid',    img:'evolution/goblin_L30_warboss_final.jpg' },
-      { name:'Overlord',   minLevel:40, zone:'Raid',    img:'evolution/goblin_L40_overlord_final.jpg' },
-      { name:'Gloomking',  minLevel:45, zone:'Myth',    img:'evolution/goblin_L45_gloomking_final.jpg' },
-      { name:'Warchief',   minLevel:50, zone:'Myth',    img:'evolution/goblin_L50_warchief_final.jpg', legend:true },
-    ],
-  },
-};
-
+// SPECIES is loaded from bloodlines.json at boot
+let SPECIES = {};  // populated after fetch
 let currentSpecies = 'orc';
-let STAGES = SPECIES[currentSpecies].stages;
+let currentBloodline = 'ironfang';
+let STAGES = [];
 const GATE_LEVELS = [5,10,15,20,30,40,45,50];
 const TRAITS = ['STR','VIT','AGI','FER','INT','LCK'];
 const TRAIT_NAMES = { STR:'Strength',VIT:'Vitality',AGI:'Agility',
@@ -1047,7 +974,8 @@ function renderLeaderboard(filter = 'all') {
   const SPECIES_ICON = { orc:'🟢', elf:'🌙', goblin:'👺' };
   const currentPower = computePowerScore();
   const myEntry = {
-    rank: '—', name: SPECIES[currentSpecies].nameByStage[state.stageIdx],
+    rank: '—',
+    name: SPECIES[currentSpecies].bloodlines[currentBloodline].nameByStage[state.stageIdx],
     species: currentSpecies, stage: state.stageIdx, level: state.level,
     elo: 150, power: currentPower, owner: 'YOU', me: true,
   };
@@ -1067,7 +995,7 @@ function renderLeaderboard(filter = 'all') {
         <div class="lb-icon">${icon}</div>
         <div class="lb-info">
           <div class="lb-name">${r.name}</div>
-          <div class="lb-detail">${r.species} · L${r.level} · ${SPECIES[r.species].stages[r.stage].name} · ${r.owner}</div>
+          <div class="lb-detail">${r.species} · L${r.level} · ${SPECIES[r.species].bloodlines[Object.keys(SPECIES[r.species].bloodlines)[0]].stages[r.stage].name} · ${r.owner}</div>
         </div>
         <div class="lb-score">${r.power.toLocaleString()}<span class="e"> pwr</span></div>
       </div>`);
@@ -1102,12 +1030,13 @@ function render() {
     `STAGE: <b>${stage.name.toUpperCase()}</b> · ${stage.zone}`;
 
   const speciesCfg = SPECIES[currentSpecies];
+  const bloodlineCfg = speciesCfg.bloodlines[currentBloodline];
   document.getElementById('champName').textContent =
-    speciesCfg.nameByStage[state.stageIdx];
+    bloodlineCfg.nameByStage[state.stageIdx];
   document.getElementById('topChampTitle').textContent =
-    speciesCfg.label + ' Champion';
+    `${speciesCfg.label} · ${bloodlineCfg.label}`;
   document.querySelector('.rank-label').innerHTML =
-    `${speciesCfg.label} · ${speciesCfg.archetype} · <span id="rankText">${state.rank.tier} ${state.rank.division}</span>`;
+    `${speciesCfg.label} · ${speciesCfg.archetype} · ${bloodlineCfg.label} · <span id="rankText">${state.rank.tier} ${state.rank.division}</span>`;
 
   const next = STAGES[state.stageIdx + 1];
   document.getElementById('evoPct').textContent = Math.round(state.evoPct);
@@ -1268,8 +1197,98 @@ function hideTooltip() {
   if (activeTooltip) { activeTooltip.remove(); activeTooltip = null; }
 }
 
-initStats();
-render();
+// ============================================================
+// BOOT — fetch bloodlines.json and wire up
+// ============================================================
+function renderBloodlinePicker() {
+  const sp = SPECIES[currentSpecies];
+  const box = document.getElementById('bloodlineBtns');
+  box.innerHTML = '';
+  Object.entries(sp.bloodlines).forEach(([bl_id, bl]) => {
+    const active = bl_id === currentBloodline;
+    const b = document.createElement('button');
+    b.className = 'bl-btn' + (active ? ' active' : '');
+    b.textContent = bl.label;
+    b.addEventListener('click', () => {
+      currentBloodline = bl_id;
+      STAGES = bl.stages;
+      renderBloodlinePicker();
+      render();
+    });
+    box.appendChild(b);
+  });
+}
+
+function renderSpeciesButtons() {
+  // Re-wire species picker after data load (overwrites static HTML handlers)
+  document.querySelectorAll('.sp-btn').forEach(btn => {
+    // strip any existing handlers by cloning
+    const clone = btn.cloneNode(true);
+    btn.parentNode.replaceChild(clone, btn);
+  });
+  document.querySelectorAll('.sp-btn').forEach(btn => {
+    const sp = btn.dataset.sp;
+    btn.addEventListener('click', () => {
+      if (!SPECIES[sp]) return;
+      currentSpecies = sp;
+      // pick first bloodline by default
+      currentBloodline = Object.keys(SPECIES[sp].bloodlines)[0];
+      STAGES = SPECIES[sp].bloodlines[currentBloodline].stages;
+      state.stageIdx = Math.min(state.stageIdx, STAGES.length - 1);
+      state.level = STAGES[state.stageIdx].minLevel;
+      document.querySelectorAll('.sp-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      initStats();
+      renderBloodlinePicker();
+      render();
+    });
+  });
+}
+
+async function boot() {
+  try {
+    const data = await fetch('bloodlines.json').then(r => r.json());
+    // Transform bloodlines.json schema → runtime SPECIES
+    Object.entries(data.species).forEach(([sp_id, sp]) => {
+      SPECIES[sp_id] = {
+        label: sp.label,
+        archetype: sp.archetype,
+        emoji: sp.emoji,
+        bloodlines: {},
+      };
+      Object.entries(sp.bloodlines).forEach(([bl_id, bl]) => {
+        // Build per-stage nameByStage from hero name + stage names
+        const hero = bl.heroName;
+        const nameByStage = sp.stageNames.map((name, idx) => {
+          if (idx === 0) return `${hero} the ${name}`;
+          if (idx === 8) return `${hero}, the ${name}`;
+          return `${hero} ${name}`;
+        });
+        SPECIES[sp_id].bloodlines[bl_id] = {
+          label: bl.label,
+          heroName: hero,
+          nameByStage,
+          stages: bl.stages,
+        };
+      });
+    });
+    // Initial pick
+    currentSpecies = 'orc';
+    currentBloodline = 'ironfang';
+    STAGES = SPECIES.orc.bloodlines.ironfang.stages;
+    renderSpeciesButtons();
+    renderBloodlinePicker();
+    initStats();
+    render();
+  } catch (e) {
+    alert('Failed to load bloodlines.json: ' + e.message);
+    console.error(e);
+  }
+}
+
+// Update anywhere that referenced SPECIES[currentSpecies].nameByStage directly:
+// we now reference SPECIES[currentSpecies].bloodlines[currentBloodline].nameByStage
+boot();
 </script>
 </body>
 </html>

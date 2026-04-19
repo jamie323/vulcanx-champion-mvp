@@ -1,0 +1,1159 @@
+{
+  "species": {
+    "orc": {
+      "label": "Orc",
+      "archetype": "Brute",
+      "emoji": "\ud83d\udfe2",
+      "stageNames": [
+        "Whelp",
+        "Pup",
+        "Adolescent",
+        "Warrior",
+        "Champion",
+        "Elite",
+        "Warlord",
+        "Ascendant",
+        "Legendary"
+      ],
+      "bloodlines": {
+        "ironfang": {
+          "label": "Ironfang",
+          "heroName": "Grokk",
+          "nameSuffix": "Ironfang",
+          "stages": [
+            {
+              "name": "Whelp",
+              "minLevel": 1,
+              "zone": "warm cave nursery with amber firelight, moss, furs, a nest of dried grass",
+              "img": "evolution/orc_ironfang_L01_whelp_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Pup",
+              "minLevel": 5,
+              "zone": "tribal hut village at dawn, wooden structures, morning sunlight filtering",
+              "img": "evolution/orc_ironfang_L05_pup_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Adolescent",
+              "minLevel": 10,
+              "zone": "tribal training ground at dusk, wooden practice dummies, lantern light",
+              "img": "evolution/orc_ironfang_L10_adolescent_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warrior",
+              "minLevel": 15,
+              "zone": "fortified camp at dusk, campfires, distant banners, ruined stone walls",
+              "img": "evolution/orc_ironfang_L15_warrior_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Champion",
+              "minLevel": 20,
+              "zone": "war-camp edge at night, torchlight, distant battles, chaotic fires in background",
+              "img": "evolution/orc_ironfang_L20_champion_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Elite",
+              "minLevel": 30,
+              "zone": "battlefield aftermath, smoke, fallen foes, blood-red dusk sky",
+              "img": "evolution/orc_ironfang_L30_elite_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warlord",
+              "minLevel": 40,
+              "zone": "volcanic plateau with dark sky, burning banners, bones scattered",
+              "img": "evolution/orc_ironfang_L40_warlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Ascendant",
+              "minLevel": 45,
+              "zone": "ember-strewn ascent to volcanic peak, lava glow, volcanic haze",
+              "img": "evolution/orc_ironfang_L45_ascendant_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Legendary",
+              "minLevel": 50,
+              "zone": "throne of bones on a dark volcanic peak, distant army of orc warriors kneeling, blood-red volcanic sky with lightning, burning banners, lava glow reflecting off armour, atmospheric haze, glowing embers drifting",
+              "img": "evolution/L50_legendary_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "ashclan": {
+          "label": "Ashclan",
+          "heroName": "Ashkar",
+          "nameSuffix": "Bonecaller",
+          "stages": [
+            {
+              "name": "Whelp",
+              "minLevel": 1,
+              "zone": "warm cave nursery with amber firelight, moss, furs, a nest of dried grass",
+              "img": "evolution/orc_ashclan_L01_whelp_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Pup",
+              "minLevel": 5,
+              "zone": "tribal hut village at dawn, wooden structures, morning sunlight filtering",
+              "img": "evolution/orc_ashclan_L05_pup_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Adolescent",
+              "minLevel": 10,
+              "zone": "tribal training ground at dusk, wooden practice dummies, lantern light",
+              "img": "evolution/orc_ashclan_L10_adolescent_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warrior",
+              "minLevel": 15,
+              "zone": "fortified camp at dusk, campfires, distant banners, ruined stone walls",
+              "img": "evolution/orc_ashclan_L15_warrior_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Champion",
+              "minLevel": 20,
+              "zone": "war-camp edge at night, torchlight, distant battles, chaotic fires in background",
+              "img": "evolution/orc_ashclan_L20_champion_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Elite",
+              "minLevel": 30,
+              "zone": "battlefield aftermath, smoke, fallen foes, blood-red dusk sky",
+              "img": "evolution/orc_ashclan_L30_elite_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warlord",
+              "minLevel": 40,
+              "zone": "volcanic plateau with dark sky, burning banners, bones scattered",
+              "img": "evolution/orc_ashclan_L40_warlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Ascendant",
+              "minLevel": 45,
+              "zone": "ember-strewn ascent to volcanic peak, lava glow, volcanic haze",
+              "img": "evolution/orc_ashclan_L45_ascendant_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Legendary",
+              "minLevel": 50,
+              "zone": "throne of bones on a dark volcanic peak, distant army of orc warriors kneeling, blood-red volcanic sky with lightning, burning banners, lava glow reflecting off armour, atmospheric haze, glowing embers drifting",
+              "img": "evolution/orc_ashclan_L50_legendary_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "bloodfang": {
+          "label": "Bloodfang",
+          "heroName": "Bloodjaw",
+          "nameSuffix": "Bloodjaw",
+          "stages": [
+            {
+              "name": "Whelp",
+              "minLevel": 1,
+              "zone": "warm cave nursery with amber firelight, moss, furs, a nest of dried grass",
+              "img": "evolution/orc_bloodfang_L01_whelp_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Pup",
+              "minLevel": 5,
+              "zone": "tribal hut village at dawn, wooden structures, morning sunlight filtering",
+              "img": "evolution/orc_bloodfang_L05_pup_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Adolescent",
+              "minLevel": 10,
+              "zone": "tribal training ground at dusk, wooden practice dummies, lantern light",
+              "img": "evolution/orc_bloodfang_L10_adolescent_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warrior",
+              "minLevel": 15,
+              "zone": "fortified camp at dusk, campfires, distant banners, ruined stone walls",
+              "img": "evolution/orc_bloodfang_L15_warrior_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Champion",
+              "minLevel": 20,
+              "zone": "war-camp edge at night, torchlight, distant battles, chaotic fires in background",
+              "img": "evolution/orc_bloodfang_L20_champion_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Elite",
+              "minLevel": 30,
+              "zone": "battlefield aftermath, smoke, fallen foes, blood-red dusk sky",
+              "img": "evolution/orc_bloodfang_L30_elite_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warlord",
+              "minLevel": 40,
+              "zone": "volcanic plateau with dark sky, burning banners, bones scattered",
+              "img": "evolution/orc_bloodfang_L40_warlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Ascendant",
+              "minLevel": 45,
+              "zone": "ember-strewn ascent to volcanic peak, lava glow, volcanic haze",
+              "img": "evolution/orc_bloodfang_L45_ascendant_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Legendary",
+              "minLevel": 50,
+              "zone": "throne of bones on a dark volcanic peak, distant army of orc warriors kneeling, blood-red volcanic sky with lightning, burning banners, lava glow reflecting off armour, atmospheric haze, glowing embers drifting",
+              "img": "evolution/orc_bloodfang_L50_legendary_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
+    },
+    "elf": {
+      "label": "Elf",
+      "archetype": "Druid / Ranger",
+      "emoji": "\ud83c\udf19",
+      "stageNames": [
+        "Elfling",
+        "Sprite",
+        "Acolyte",
+        "Archer",
+        "Warden",
+        "Templar",
+        "Sage",
+        "Highborn",
+        "Archdruid"
+      ],
+      "bloodlines": {
+        "moonsong": {
+          "label": "Moonsong",
+          "heroName": "Silvanas",
+          "nameSuffix": "Moonsong",
+          "stages": [
+            {
+              "name": "Elfling",
+              "minLevel": 1,
+              "zone": "moonlit forest glade nursery \u2014 glowing mushrooms, fireflies, woven basket of moss and silver-leaf ferns",
+              "img": "evolution/elf_moonsong_L01_elfling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Sprite",
+              "minLevel": 5,
+              "zone": "woven tree-hut village in the canopy, small lanterns hanging from branches, moss-covered walkways",
+              "img": "evolution/elf_moonsong_L05_sprite_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Acolyte",
+              "minLevel": 10,
+              "zone": "acolyte grove with dappled sunlight, woven hammocks, moss-covered stones",
+              "img": "evolution/elf_moonsong_L10_acolyte_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archer",
+              "minLevel": 15,
+              "zone": "a dawnlit archery grove with practice targets, dew-wet leaves, misty morning",
+              "img": "evolution/elf_moonsong_L15_archer_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warden",
+              "minLevel": 20,
+              "zone": "moonlit forest edge on patrol, distant owl silhouette, silver fog",
+              "img": "evolution/elf_moonsong_L20_warden_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Templar",
+              "minLevel": 30,
+              "zone": "fortified grove outpost at dusk, stone pillars with elvish runes, silver lanterns",
+              "img": "evolution/elf_moonsong_L30_templar_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Sage",
+              "minLevel": 40,
+              "zone": "quiet moonlit grove library, carved stone pedestals with arcane scrolls, dim silver lanterns",
+              "img": "evolution/elf_moonsong_L40_sage_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Highborn",
+              "minLevel": 45,
+              "zone": "outer eldertree grove with towering trees, embedded moonstones, serene twilight",
+              "img": "evolution/elf_moonsong_L45_highborn_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archdruid",
+              "minLevel": 50,
+              "zone": "inside an ANCIENT ELDERTREE HALL at night \u2014 colossal bioluminescent tree trunks, glowing sigils carved into the bark, ethereal mist, astral water, kneeling elven warriors in background",
+              "img": "evolution/elf_L50_archdruid_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "sunweaver": {
+          "label": "Sunweaver",
+          "heroName": "Aelia",
+          "nameSuffix": "Sunweaver",
+          "stages": [
+            {
+              "name": "Elfling",
+              "minLevel": 1,
+              "zone": "moonlit forest glade nursery \u2014 glowing mushrooms, fireflies, woven basket of moss and silver-leaf ferns",
+              "img": "evolution/elf_sunweaver_L01_elfling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Sprite",
+              "minLevel": 5,
+              "zone": "woven tree-hut village in the canopy, small lanterns hanging from branches, moss-covered walkways",
+              "img": "evolution/elf_sunweaver_L05_sprite_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Acolyte",
+              "minLevel": 10,
+              "zone": "acolyte grove with dappled sunlight, woven hammocks, moss-covered stones",
+              "img": "evolution/elf_sunweaver_L10_acolyte_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archer",
+              "minLevel": 15,
+              "zone": "a dawnlit archery grove with practice targets, dew-wet leaves, misty morning",
+              "img": "evolution/elf_sunweaver_L15_archer_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warden",
+              "minLevel": 20,
+              "zone": "moonlit forest edge on patrol, distant owl silhouette, silver fog",
+              "img": "evolution/elf_sunweaver_L20_warden_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Templar",
+              "minLevel": 30,
+              "zone": "fortified grove outpost at dusk, stone pillars with elvish runes, silver lanterns",
+              "img": "evolution/elf_sunweaver_L30_templar_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Sage",
+              "minLevel": 40,
+              "zone": "quiet moonlit grove library, carved stone pedestals with arcane scrolls, dim silver lanterns",
+              "img": "evolution/elf_sunweaver_L40_sage_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Highborn",
+              "minLevel": 45,
+              "zone": "outer eldertree grove with towering trees, embedded moonstones, serene twilight",
+              "img": "evolution/elf_sunweaver_L45_highborn_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archdruid",
+              "minLevel": 50,
+              "zone": "inside an ANCIENT ELDERTREE HALL at night \u2014 colossal bioluminescent tree trunks, glowing sigils carved into the bark, ethereal mist, astral water, kneeling elven warriors in background",
+              "img": "evolution/elf_sunweaver_L50_archdruid_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "nightshade": {
+          "label": "Nightshade",
+          "heroName": "Vesper",
+          "nameSuffix": "Nightshade",
+          "stages": [
+            {
+              "name": "Elfling",
+              "minLevel": 1,
+              "zone": "moonlit forest glade nursery \u2014 glowing mushrooms, fireflies, woven basket of moss and silver-leaf ferns",
+              "img": "evolution/elf_nightshade_L01_elfling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Sprite",
+              "minLevel": 5,
+              "zone": "woven tree-hut village in the canopy, small lanterns hanging from branches, moss-covered walkways",
+              "img": "evolution/elf_nightshade_L05_sprite_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Acolyte",
+              "minLevel": 10,
+              "zone": "acolyte grove with dappled sunlight, woven hammocks, moss-covered stones",
+              "img": "evolution/elf_nightshade_L10_acolyte_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archer",
+              "minLevel": 15,
+              "zone": "a dawnlit archery grove with practice targets, dew-wet leaves, misty morning",
+              "img": "evolution/elf_nightshade_L15_archer_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warden",
+              "minLevel": 20,
+              "zone": "moonlit forest edge on patrol, distant owl silhouette, silver fog",
+              "img": "evolution/elf_nightshade_L20_warden_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Templar",
+              "minLevel": 30,
+              "zone": "fortified grove outpost at dusk, stone pillars with elvish runes, silver lanterns",
+              "img": "evolution/elf_nightshade_L30_templar_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Sage",
+              "minLevel": 40,
+              "zone": "quiet moonlit grove library, carved stone pedestals with arcane scrolls, dim silver lanterns",
+              "img": "evolution/elf_nightshade_L40_sage_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Highborn",
+              "minLevel": 45,
+              "zone": "outer eldertree grove with towering trees, embedded moonstones, serene twilight",
+              "img": "evolution/elf_nightshade_L45_highborn_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archdruid",
+              "minLevel": 50,
+              "zone": "inside an ANCIENT ELDERTREE HALL at night \u2014 colossal bioluminescent tree trunks, glowing sigils carved into the bark, ethereal mist, astral water, kneeling elven warriors in background",
+              "img": "evolution/elf_nightshade_L50_archdruid_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
+    },
+    "goblin": {
+      "label": "Goblin",
+      "archetype": "Rogue",
+      "emoji": "\ud83d\udc7a",
+      "stageNames": [
+        "Scraggling",
+        "Snipper",
+        "Scout",
+        "Raider",
+        "Chief",
+        "Warboss",
+        "Overlord",
+        "Gloomking",
+        "Warchief"
+      ],
+      "bloodlines": {
+        "irontooth": {
+          "label": "Iron-Tooth",
+          "heroName": "Gribnit",
+          "nameSuffix": "Iron-Tooth",
+          "stages": [
+            {
+              "name": "Scraggling",
+              "minLevel": 1,
+              "zone": "dank underground burrow warren \u2014 dim torchlight, piles of rags and bones as a nest, moss and fungus on damp stone walls",
+              "img": "evolution/goblin_irontooth_L01_scraggling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Snipper",
+              "minLevel": 5,
+              "zone": "small dim goblin-tribe hovel interior, firelit, bones and rags everywhere",
+              "img": "evolution/goblin_irontooth_L05_snipper_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scout",
+              "minLevel": 10,
+              "zone": "rickety goblin rope-bridge in swamp canopy, dawn light filtering through moss",
+              "img": "evolution/goblin_irontooth_L10_scout_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Raider",
+              "minLevel": 15,
+              "zone": "dusk in a ramshackle swamp-goblin village, stolen banners flapping, torchlight",
+              "img": "evolution/goblin_irontooth_L15_raider_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Chief",
+              "minLevel": 20,
+              "zone": "top of a swampy goblin encampment, rickety watchtowers, campfires, minions bowing",
+              "img": "evolution/goblin_irontooth_L20_chief_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warboss",
+              "minLevel": 30,
+              "zone": "raid-camp firelit clearing, stolen goods piled, smaller goblins hauling loot",
+              "img": "evolution/goblin_irontooth_L30_warboss_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Overlord",
+              "minLevel": 40,
+              "zone": "bandit-camp war tent interior, stolen weapons on racks, firelight, raid-route map on crude wooden table",
+              "img": "evolution/goblin_irontooth_L40_overlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Gloomking",
+              "minLevel": 45,
+              "zone": "smaller goblin throne carved from dark stone, looted banners, torches",
+              "img": "evolution/goblin_irontooth_L45_gloomking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warchief",
+              "minLevel": 50,
+              "zone": "OBSIDIAN THRONE ROOM piled with looted treasure, MASSIVE DRAGON SKULL mounted on the wall behind, torches in iron sconces, cowering goblin minions in the shadows, bones scattered on the floor",
+              "img": "evolution/goblin_L50_warchief_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "swampskin": {
+          "label": "Swampskin",
+          "heroName": "Gnark",
+          "nameSuffix": "Swampskin",
+          "stages": [
+            {
+              "name": "Scraggling",
+              "minLevel": 1,
+              "zone": "dank underground burrow warren \u2014 dim torchlight, piles of rags and bones as a nest, moss and fungus on damp stone walls",
+              "img": "evolution/goblin_swampskin_L01_scraggling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Snipper",
+              "minLevel": 5,
+              "zone": "small dim goblin-tribe hovel interior, firelit, bones and rags everywhere",
+              "img": "evolution/goblin_swampskin_L05_snipper_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scout",
+              "minLevel": 10,
+              "zone": "rickety goblin rope-bridge in swamp canopy, dawn light filtering through moss",
+              "img": "evolution/goblin_swampskin_L10_scout_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Raider",
+              "minLevel": 15,
+              "zone": "dusk in a ramshackle swamp-goblin village, stolen banners flapping, torchlight",
+              "img": "evolution/goblin_swampskin_L15_raider_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Chief",
+              "minLevel": 20,
+              "zone": "top of a swampy goblin encampment, rickety watchtowers, campfires, minions bowing",
+              "img": "evolution/goblin_swampskin_L20_chief_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warboss",
+              "minLevel": 30,
+              "zone": "raid-camp firelit clearing, stolen goods piled, smaller goblins hauling loot",
+              "img": "evolution/goblin_swampskin_L30_warboss_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Overlord",
+              "minLevel": 40,
+              "zone": "bandit-camp war tent interior, stolen weapons on racks, firelight, raid-route map on crude wooden table",
+              "img": "evolution/goblin_swampskin_L40_overlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Gloomking",
+              "minLevel": 45,
+              "zone": "smaller goblin throne carved from dark stone, looted banners, torches",
+              "img": "evolution/goblin_swampskin_L45_gloomking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warchief",
+              "minLevel": 50,
+              "zone": "OBSIDIAN THRONE ROOM piled with looted treasure, MASSIVE DRAGON SKULL mounted on the wall behind, torches in iron sconces, cowering goblin minions in the shadows, bones scattered on the floor",
+              "img": "evolution/goblin_swampskin_L50_warchief_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "emberskin": {
+          "label": "Emberskin",
+          "heroName": "Slinkra",
+          "nameSuffix": "Emberstaln",
+          "stages": [
+            {
+              "name": "Scraggling",
+              "minLevel": 1,
+              "zone": "dank underground burrow warren \u2014 dim torchlight, piles of rags and bones as a nest, moss and fungus on damp stone walls",
+              "img": "evolution/goblin_emberskin_L01_scraggling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Snipper",
+              "minLevel": 5,
+              "zone": "small dim goblin-tribe hovel interior, firelit, bones and rags everywhere",
+              "img": "evolution/goblin_emberskin_L05_snipper_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scout",
+              "minLevel": 10,
+              "zone": "rickety goblin rope-bridge in swamp canopy, dawn light filtering through moss",
+              "img": "evolution/goblin_emberskin_L10_scout_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Raider",
+              "minLevel": 15,
+              "zone": "dusk in a ramshackle swamp-goblin village, stolen banners flapping, torchlight",
+              "img": "evolution/goblin_emberskin_L15_raider_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Chief",
+              "minLevel": 20,
+              "zone": "top of a swampy goblin encampment, rickety watchtowers, campfires, minions bowing",
+              "img": "evolution/goblin_emberskin_L20_chief_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warboss",
+              "minLevel": 30,
+              "zone": "raid-camp firelit clearing, stolen goods piled, smaller goblins hauling loot",
+              "img": "evolution/goblin_emberskin_L30_warboss_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Overlord",
+              "minLevel": 40,
+              "zone": "bandit-camp war tent interior, stolen weapons on racks, firelight, raid-route map on crude wooden table",
+              "img": "evolution/goblin_emberskin_L40_overlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Gloomking",
+              "minLevel": 45,
+              "zone": "smaller goblin throne carved from dark stone, looted banners, torches",
+              "img": "evolution/goblin_emberskin_L45_gloomking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Warchief",
+              "minLevel": 50,
+              "zone": "OBSIDIAN THRONE ROOM piled with looted treasure, MASSIVE DRAGON SKULL mounted on the wall behind, torches in iron sconces, cowering goblin minions in the shadows, bones scattered on the floor",
+              "img": "evolution/goblin_emberskin_L50_warchief_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
+    },
+    "demon": {
+      "label": "Flame Paladin",
+      "archetype": "Pyromancer",
+      "emoji": "\ud83d\udd25",
+      "stageNames": [
+        "Emberling",
+        "Cinderkin",
+        "Ashblood",
+        "Flamebound",
+        "Hellrider",
+        "Brandlord",
+        "Infernal Knight",
+        "Abyssal Knight",
+        "Hellknight Overlord"
+      ],
+      "bloodlines": {
+        "infernal": {
+          "label": "Infernal",
+          "heroName": "Kaelith",
+          "nameSuffix": "of the Pit",
+          "stages": [
+            {
+              "name": "Emberling",
+              "minLevel": 1,
+              "zone": "obsidian-stone volcanic nursery, pool of glowing red lava, charred dragon-scale cradle",
+              "img": "evolution/demon_infernal_L01_emberling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Cinderkin",
+              "minLevel": 5,
+              "zone": "basalt spire fantasy village, jagged obsidian spires, sulphur mist",
+              "img": "evolution/demon_infernal_L05_cinderkin_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Ashblood",
+              "minLevel": 10,
+              "zone": "arcane training arena with floating fire-runes",
+              "img": "evolution/demon_infernal_L10_ashblood_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Flamebound",
+              "minLevel": 15,
+              "zone": "ashen fantasy battleground with smouldering debris, red sky",
+              "img": "evolution/demon_infernal_L15_flamebound_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hellrider",
+              "minLevel": 20,
+              "zone": "dragon-bone canyon with floating ember-debris",
+              "img": "evolution/demon_infernal_L20_hellrider_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Brandlord",
+              "minLevel": 30,
+              "zone": "cathedral of molten arches with burning sigils",
+              "img": "evolution/demon_infernal_L30_brandlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Infernal Knight",
+              "minLevel": 40,
+              "zone": "infernal fantasy war-camp with burning banners and ember-rain",
+              "img": "evolution/demon_infernal_L40_infernalknight_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Abyssal Knight",
+              "minLevel": 45,
+              "zone": "obsidian tower balcony overlooking a molten landscape",
+              "img": "evolution/demon_infernal_L45_abyssalknight_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hellknight Overlord",
+              "minLevel": 50,
+              "zone": "COLOSSAL OBSIDIAN THRONE on the rim of an inverted lava caldera, molten waterfall cascading behind, floating arcane sigils, rivers of ember-fog, sky cracked with red lightning",
+              "img": "evolution/demon_infernal_L50_hellknightoverlord_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "voidborn": {
+          "label": "Voidborn",
+          "heroName": "Nyx",
+          "nameSuffix": "Voidspeaker",
+          "stages": [
+            {
+              "name": "Emberling",
+              "minLevel": 1,
+              "zone": "obsidian-stone volcanic nursery, pool of glowing red lava, charred dragon-scale cradle",
+              "img": "evolution/demon_voidborn_L01_emberling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Cinderkin",
+              "minLevel": 5,
+              "zone": "basalt spire fantasy village, jagged obsidian spires, sulphur mist",
+              "img": "evolution/demon_voidborn_L05_cinderkin_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Ashblood",
+              "minLevel": 10,
+              "zone": "arcane training arena with floating fire-runes",
+              "img": "evolution/demon_voidborn_L10_ashblood_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Flamebound",
+              "minLevel": 15,
+              "zone": "ashen fantasy battleground with smouldering debris, red sky",
+              "img": "evolution/demon_voidborn_L15_flamebound_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hellrider",
+              "minLevel": 20,
+              "zone": "dragon-bone canyon with floating ember-debris",
+              "img": "evolution/demon_voidborn_L20_hellrider_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Brandlord",
+              "minLevel": 30,
+              "zone": "cathedral of molten arches with burning sigils",
+              "img": "evolution/demon_voidborn_L30_brandlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Infernal Knight",
+              "minLevel": 40,
+              "zone": "infernal fantasy war-camp with burning banners and ember-rain",
+              "img": "evolution/demon_voidborn_L40_infernalknight_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Abyssal Knight",
+              "minLevel": 45,
+              "zone": "obsidian tower balcony overlooking a molten landscape",
+              "img": "evolution/demon_voidborn_L45_abyssalknight_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hellknight Overlord",
+              "minLevel": 50,
+              "zone": "COLOSSAL OBSIDIAN THRONE on the rim of an inverted lava caldera, molten waterfall cascading behind, floating arcane sigils, rivers of ember-fog, sky cracked with red lightning",
+              "img": "evolution/demon_voidborn_L50_hellknightoverlord_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "ichorskin": {
+          "label": "Ichorskin",
+          "heroName": "Vorenth",
+          "nameSuffix": "the Mystic",
+          "stages": [
+            {
+              "name": "Emberling",
+              "minLevel": 1,
+              "zone": "obsidian-stone volcanic nursery, pool of glowing red lava, charred dragon-scale cradle",
+              "img": "evolution/demon_ichorskin_L01_emberling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Cinderkin",
+              "minLevel": 5,
+              "zone": "basalt spire fantasy village, jagged obsidian spires, sulphur mist",
+              "img": "evolution/demon_ichorskin_L05_cinderkin_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Ashblood",
+              "minLevel": 10,
+              "zone": "arcane training arena with floating fire-runes",
+              "img": "evolution/demon_ichorskin_L10_ashblood_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Flamebound",
+              "minLevel": 15,
+              "zone": "ashen fantasy battleground with smouldering debris, red sky",
+              "img": "evolution/demon_ichorskin_L15_flamebound_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hellrider",
+              "minLevel": 20,
+              "zone": "dragon-bone canyon with floating ember-debris",
+              "img": "evolution/demon_ichorskin_L20_hellrider_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Brandlord",
+              "minLevel": 30,
+              "zone": "cathedral of molten arches with burning sigils",
+              "img": "evolution/demon_ichorskin_L30_brandlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Infernal Knight",
+              "minLevel": 40,
+              "zone": "infernal fantasy war-camp with burning banners and ember-rain",
+              "img": "evolution/demon_ichorskin_L40_infernalknight_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Abyssal Knight",
+              "minLevel": 45,
+              "zone": "obsidian tower balcony overlooking a molten landscape",
+              "img": "evolution/demon_ichorskin_L45_abyssalknight_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hellknight Overlord",
+              "minLevel": 50,
+              "zone": "COLOSSAL OBSIDIAN THRONE on the rim of an inverted lava caldera, molten waterfall cascading behind, floating arcane sigils, rivers of ember-fog, sky cracked with red lightning",
+              "img": "evolution/demon_ichorskin_L50_hellknightoverlord_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
+    },
+    "drakkin": {
+      "label": "Drakkin",
+      "archetype": "Elemental",
+      "emoji": "\ud83d\udc09",
+      "stageNames": [
+        "Wyrmling",
+        "Fledgling",
+        "Scaleborn",
+        "Drakewarden",
+        "Drakonid",
+        "Scalelord",
+        "Drakelord",
+        "Primordial",
+        "Drakelord Primordial"
+      ],
+      "bloodlines": {
+        "emberscale": {
+          "label": "Emberscale",
+          "heroName": "Vorthrax",
+          "nameSuffix": "Emberscale",
+          "stages": [
+            {
+              "name": "Wyrmling",
+              "minLevel": 1,
+              "zone": "shadowed dragon-nest cave with golden hoard coins scattered as a nest, soft orange glow",
+              "img": "evolution/drakkin_emberscale_L01_wyrmling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Fledgling",
+              "minLevel": 5,
+              "zone": "mountain aerie entrance, windswept, morning mist revealing peaks below",
+              "img": "evolution/drakkin_emberscale_L05_fledgling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scaleborn",
+              "minLevel": 10,
+              "zone": "dragon-clan stone lodge, tapestries with runic geometry, hearthfire",
+              "img": "evolution/drakkin_emberscale_L10_scaleborn_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakewarden",
+              "minLevel": 15,
+              "zone": "high plateau training ground with standing stones, afternoon light",
+              "img": "evolution/drakkin_emberscale_L15_drakewarden_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakonid",
+              "minLevel": 20,
+              "zone": "mountain monastery balcony with dragonstone pillars, evening mist",
+              "img": "evolution/drakkin_emberscale_L20_drakonid_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scalelord",
+              "minLevel": 30,
+              "zone": "volcanic draconic battlefield, lava cracks in the earth, smoke spires",
+              "img": "evolution/drakkin_emberscale_L30_scalelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakelord",
+              "minLevel": 40,
+              "zone": "high crater-rim at dusk with stormclouds and distant dragon silhouettes circling",
+              "img": "evolution/drakkin_emberscale_L40_drakelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Primordial",
+              "minLevel": 45,
+              "zone": "elemental shrine at the peak \u2014 floating stones, aurora in the night sky, crackling energy",
+              "img": "evolution/drakkin_emberscale_L45_primordial_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakelord Primordial",
+              "minLevel": 50,
+              "zone": "PRIMORDIAL DRAGON-CAULDRON at the world's peak \u2014 a massive circle of ancient standing stones covered in living runes, elemental energies (fire, ice, storm, earth) swirling in the air, dragons flying in the distance, cosmic sky with aurora and stars",
+              "img": "evolution/drakkin_emberscale_L50_drakelordprimordial_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "frostscale": {
+          "label": "Frostscale",
+          "heroName": "Rimeclaw",
+          "nameSuffix": "Frostscale",
+          "stages": [
+            {
+              "name": "Wyrmling",
+              "minLevel": 1,
+              "zone": "shadowed dragon-nest cave with golden hoard coins scattered as a nest, soft orange glow",
+              "img": "evolution/drakkin_frostscale_L01_wyrmling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Fledgling",
+              "minLevel": 5,
+              "zone": "mountain aerie entrance, windswept, morning mist revealing peaks below",
+              "img": "evolution/drakkin_frostscale_L05_fledgling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scaleborn",
+              "minLevel": 10,
+              "zone": "dragon-clan stone lodge, tapestries with runic geometry, hearthfire",
+              "img": "evolution/drakkin_frostscale_L10_scaleborn_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakewarden",
+              "minLevel": 15,
+              "zone": "high plateau training ground with standing stones, afternoon light",
+              "img": "evolution/drakkin_frostscale_L15_drakewarden_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakonid",
+              "minLevel": 20,
+              "zone": "mountain monastery balcony with dragonstone pillars, evening mist",
+              "img": "evolution/drakkin_frostscale_L20_drakonid_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scalelord",
+              "minLevel": 30,
+              "zone": "volcanic draconic battlefield, lava cracks in the earth, smoke spires",
+              "img": "evolution/drakkin_frostscale_L30_scalelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakelord",
+              "minLevel": 40,
+              "zone": "high crater-rim at dusk with stormclouds and distant dragon silhouettes circling",
+              "img": "evolution/drakkin_frostscale_L40_drakelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Primordial",
+              "minLevel": 45,
+              "zone": "elemental shrine at the peak \u2014 floating stones, aurora in the night sky, crackling energy",
+              "img": "evolution/drakkin_frostscale_L45_primordial_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakelord Primordial",
+              "minLevel": 50,
+              "zone": "PRIMORDIAL DRAGON-CAULDRON at the world's peak \u2014 a massive circle of ancient standing stones covered in living runes, elemental energies (fire, ice, storm, earth) swirling in the air, dragons flying in the distance, cosmic sky with aurora and stars",
+              "img": "evolution/drakkin_frostscale_L50_drakelordprimordial_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "stormscale": {
+          "label": "Stormscale",
+          "heroName": "Kyraxx",
+          "nameSuffix": "Stormscale",
+          "stages": [
+            {
+              "name": "Wyrmling",
+              "minLevel": 1,
+              "zone": "shadowed dragon-nest cave with golden hoard coins scattered as a nest, soft orange glow",
+              "img": "evolution/drakkin_stormscale_L01_wyrmling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Fledgling",
+              "minLevel": 5,
+              "zone": "mountain aerie entrance, windswept, morning mist revealing peaks below",
+              "img": "evolution/drakkin_stormscale_L05_fledgling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scaleborn",
+              "minLevel": 10,
+              "zone": "dragon-clan stone lodge, tapestries with runic geometry, hearthfire",
+              "img": "evolution/drakkin_stormscale_L10_scaleborn_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakewarden",
+              "minLevel": 15,
+              "zone": "high plateau training ground with standing stones, afternoon light",
+              "img": "evolution/drakkin_stormscale_L15_drakewarden_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakonid",
+              "minLevel": 20,
+              "zone": "mountain monastery balcony with dragonstone pillars, evening mist",
+              "img": "evolution/drakkin_stormscale_L20_drakonid_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Scalelord",
+              "minLevel": 30,
+              "zone": "volcanic draconic battlefield, lava cracks in the earth, smoke spires",
+              "img": "evolution/drakkin_stormscale_L30_scalelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakelord",
+              "minLevel": 40,
+              "zone": "high crater-rim at dusk with stormclouds and distant dragon silhouettes circling",
+              "img": "evolution/drakkin_stormscale_L40_drakelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Primordial",
+              "minLevel": 45,
+              "zone": "elemental shrine at the peak \u2014 floating stones, aurora in the night sky, crackling energy",
+              "img": "evolution/drakkin_stormscale_L45_primordial_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Drakelord Primordial",
+              "minLevel": 50,
+              "zone": "PRIMORDIAL DRAGON-CAULDRON at the world's peak \u2014 a massive circle of ancient standing stones covered in living runes, elemental energies (fire, ice, storm, earth) swirling in the air, dragons flying in the distance, cosmic sky with aurora and stars",
+              "img": "evolution/drakkin_stormscale_L50_drakelordprimordial_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
+    }
+  }
+}
