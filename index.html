@@ -1639,25 +1639,6 @@ function hideTooltip() {
 // ============================================================
 // BOOT — fetch bloodlines.json and wire up
 // ============================================================
-function renderBloodlinePicker() {
-  const sp = SPECIES[currentSpecies];
-  const box = document.getElementById('bloodlineBtns');
-  box.innerHTML = '';
-  Object.entries(sp.bloodlines).forEach(([bl_id, bl]) => {
-    const active = bl_id === currentBloodline;
-    const b = document.createElement('button');
-    b.className = 'bl-btn' + (active ? ' active' : '');
-    b.textContent = bl.label;
-    b.addEventListener('click', () => {
-      currentBloodline = bl_id;
-      STAGES = bl.stages;
-      renderBloodlinePicker();
-      render();
-    });
-    box.appendChild(b);
-  });
-}
-
 function renderSpeciesButtons() {
   // Re-wire species picker after data load (overwrites static HTML handlers)
   document.querySelectorAll('.sp-btn').forEach(btn => {
@@ -1703,7 +1684,9 @@ function saveMyChampions() {
 }
 
 function loadAdmin() {
-  adminMode = localStorage.getItem('adminMode') === 'true';
+  // Default ON — users opt-out via toggle; setting persists once they do.
+  const stored = localStorage.getItem('adminMode');
+  adminMode = stored === null ? true : (stored === 'true');
   document.getElementById('adminToggle').checked = adminMode;
   document.body.classList.toggle('admin-on', adminMode);
 }

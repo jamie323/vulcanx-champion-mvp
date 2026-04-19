@@ -1154,6 +1154,699 @@
           "complete": true
         }
       }
+    },
+    "dwarf": {
+      "label": "Dwarf",
+      "archetype": "Defender",
+      "emoji": "\u2692\ufe0f",
+      "stageNames": [
+        "Whelp",
+        "Stoutling",
+        "Apprentice",
+        "Journeyman",
+        "Smith",
+        "Forgemaster",
+        "Thane",
+        "Runelord",
+        "Forgeking"
+      ],
+      "bloodlines": {
+        "ironbeard": {
+          "label": "Ironbeard",
+          "heroName": "Bronn",
+          "nameSuffix": "Ironbeard",
+          "stages": [
+            {
+              "name": "Whelp",
+              "minLevel": 1,
+              "zone": "dwarven stone-cradle hearthroom with rune-carved walls, warm hearth firelight",
+              "img": "evolution/dwarf_ironbeard_L50_forgeking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Stoutling",
+              "minLevel": 5,
+              "zone": "dwarven family home in the mountain settlement, stone walls, hearth",
+              "img": "evolution/dwarf_ironbeard_L50_forgeking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Apprentice",
+              "minLevel": 10,
+              "zone": "smithing apprentice forge, glowing coals, rack of tools",
+              "img": "evolution/dwarf_ironbeard_L10_apprentice_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Journeyman",
+              "minLevel": 15,
+              "zone": "journeyman's workbench in the clanhall, smithing projects around",
+              "img": "evolution/dwarf_ironbeard_L50_forgeking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Smith",
+              "minLevel": 20,
+              "zone": "smithy of the clan with molten-iron river flowing through stone channels",
+              "img": "evolution/dwarf_ironbeard_L20_smith_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Forgemaster",
+              "minLevel": 30,
+              "zone": "forgemaster's cathedral of anvils, torchlit, smoke rising",
+              "img": "evolution/dwarf_ironbeard_L30_forgemaster_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Thane",
+              "minLevel": 40,
+              "zone": "thane's hall with rune-carved stone throne and banners of clan",
+              "img": "evolution/dwarf_ironbeard_L40_thane_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Runelord",
+              "minLevel": 45,
+              "zone": "runelord's chamber with living glowing runic patterns on walls",
+              "img": "evolution/dwarf_ironbeard_L45_runelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Forgeking",
+              "minLevel": 50,
+              "zone": "FORGEKING'S HALL \u2014 colossal molten-iron river flowing through a cathedral of rune-stone columns, dwarven warriors kneeling in rows, massive hammer-wielding forgeking statue of golden stone rising behind the throne",
+              "img": "evolution/dwarf_ironbeard_L50_forgeking_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": false
+        },
+        "stonehammer": {
+          "label": "Stonehammer",
+          "heroName": "Hrothgar",
+          "nameSuffix": "Stonehammer",
+          "stages": [
+            {
+              "name": "Whelp",
+              "minLevel": 1,
+              "zone": "dwarven stone-cradle hearthroom with rune-carved walls, warm hearth firelight",
+              "img": "evolution/dwarf_stonehammer_L50_forgeking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Stoutling",
+              "minLevel": 5,
+              "zone": "dwarven family home in the mountain settlement, stone walls, hearth",
+              "img": "evolution/dwarf_stonehammer_L05_stoutling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Apprentice",
+              "minLevel": 10,
+              "zone": "smithing apprentice forge, glowing coals, rack of tools",
+              "img": "evolution/dwarf_stonehammer_L50_forgeking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Journeyman",
+              "minLevel": 15,
+              "zone": "journeyman's workbench in the clanhall, smithing projects around",
+              "img": "evolution/dwarf_stonehammer_L50_forgeking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Smith",
+              "minLevel": 20,
+              "zone": "smithy of the clan with molten-iron river flowing through stone channels",
+              "img": "evolution/dwarf_stonehammer_L50_forgeking_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Forgemaster",
+              "minLevel": 30,
+              "zone": "forgemaster's cathedral of anvils, torchlit, smoke rising",
+              "img": "evolution/dwarf_stonehammer_L30_forgemaster_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Thane",
+              "minLevel": 40,
+              "zone": "thane's hall with rune-carved stone throne and banners of clan",
+              "img": "evolution/dwarf_stonehammer_L40_thane_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Runelord",
+              "minLevel": 45,
+              "zone": "runelord's chamber with living glowing runic patterns on walls",
+              "img": "evolution/dwarf_stonehammer_L45_runelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Forgeking",
+              "minLevel": 50,
+              "zone": "FORGEKING'S HALL \u2014 colossal molten-iron river flowing through a cathedral of rune-stone columns, dwarven warriors kneeling in rows, massive hammer-wielding forgeking statue of golden stone rising behind the throne",
+              "img": "evolution/dwarf_stonehammer_L50_forgeking_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": false
+        },
+        "goldseeker": {
+          "label": "Goldseeker",
+          "heroName": "Thrim",
+          "nameSuffix": "Goldseeker",
+          "stages": [
+            {
+              "name": "Whelp",
+              "minLevel": 1,
+              "zone": "dwarven stone-cradle hearthroom with rune-carved walls, warm hearth firelight",
+              "img": "evolution/dwarf_goldseeker_L01_whelp_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Stoutling",
+              "minLevel": 5,
+              "zone": "dwarven family home in the mountain settlement, stone walls, hearth",
+              "img": "evolution/dwarf_goldseeker_L05_stoutling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Apprentice",
+              "minLevel": 10,
+              "zone": "smithing apprentice forge, glowing coals, rack of tools",
+              "img": "evolution/dwarf_goldseeker_L10_apprentice_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Journeyman",
+              "minLevel": 15,
+              "zone": "journeyman's workbench in the clanhall, smithing projects around",
+              "img": "evolution/dwarf_goldseeker_L15_journeyman_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Smith",
+              "minLevel": 20,
+              "zone": "smithy of the clan with molten-iron river flowing through stone channels",
+              "img": "evolution/dwarf_goldseeker_L20_smith_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Forgemaster",
+              "minLevel": 30,
+              "zone": "forgemaster's cathedral of anvils, torchlit, smoke rising",
+              "img": "evolution/dwarf_goldseeker_L30_forgemaster_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Thane",
+              "minLevel": 40,
+              "zone": "thane's hall with rune-carved stone throne and banners of clan",
+              "img": "evolution/dwarf_goldseeker_L40_thane_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Runelord",
+              "minLevel": 45,
+              "zone": "runelord's chamber with living glowing runic patterns on walls",
+              "img": "evolution/dwarf_goldseeker_L45_runelord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Forgeking",
+              "minLevel": 50,
+              "zone": "FORGEKING'S HALL \u2014 colossal molten-iron river flowing through a cathedral of rune-stone columns, dwarven warriors kneeling in rows, massive hammer-wielding forgeking statue of golden stone rising behind the throne",
+              "img": "evolution/dwarf_goldseeker_L50_forgeking_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
+    },
+    "beastkin": {
+      "label": "Beastkin",
+      "archetype": "Primal",
+      "emoji": "\ud83d\udc3a",
+      "stageNames": [
+        "Cub",
+        "Yearling",
+        "Prowler",
+        "Hunter",
+        "Pack-Warrior",
+        "Alpha",
+        "Moonhunter",
+        "Alphasong",
+        "Primal Alpha"
+      ],
+      "bloodlines": {
+        "wolfkin": {
+          "label": "Wolfkin",
+          "heroName": "Fenris",
+          "nameSuffix": "Moonhunter",
+          "stages": [
+            {
+              "name": "Cub",
+              "minLevel": 1,
+              "zone": "forest-cave den with soft moss and fern bedding, dappled morning light",
+              "img": "evolution/beastkin_wolfkin_L01_cub_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Yearling",
+              "minLevel": 5,
+              "zone": "tribal pack encampment in the forest, wooden totems, morning mist",
+              "img": "evolution/beastkin_wolfkin_L05_yearling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Prowler",
+              "minLevel": 10,
+              "zone": "forest training glade with wooden practice targets",
+              "img": "evolution/beastkin_wolfkin_L10_prowler_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hunter",
+              "minLevel": 15,
+              "zone": "dappled hunting ground, game trails, forest light",
+              "img": "evolution/beastkin_wolfkin_L15_hunter_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Pack-Warrior",
+              "minLevel": 20,
+              "zone": "pack warrior clearing with a central fire pit",
+              "img": "evolution/beastkin_wolfkin_L20_pack-warrior_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Alpha",
+              "minLevel": 30,
+              "zone": "alpha's clearing beneath an ancient tree, mossy stones",
+              "img": "evolution/beastkin_wolfkin_L30_alpha_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Moonhunter",
+              "minLevel": 40,
+              "zone": "moonlit forest ridge with pale-blue fog",
+              "img": "evolution/beastkin_wolfkin_L40_moonhunter_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Alphasong",
+              "minLevel": 45,
+              "zone": "sacred grove shrine with stone totems and moss",
+              "img": "evolution/beastkin_wolfkin_L45_alphasong_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Primal Alpha",
+              "minLevel": 50,
+              "zone": "PRIMAL MOON-PEAK \u2014 howl chorus, aurora sky, shimmering spirit-beasts manifesting around him, ancient totems glowing with inner light, full moon overhead",
+              "img": "evolution/beastkin_wolfkin_L50_primalalpha_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "pantherkin": {
+          "label": "Pantherkin",
+          "heroName": "Shyra",
+          "nameSuffix": "Shadowstalker",
+          "stages": [
+            {
+              "name": "Cub",
+              "minLevel": 1,
+              "zone": "forest-cave den with soft moss and fern bedding, dappled morning light",
+              "img": "evolution/beastkin_pantherkin_L01_cub_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Yearling",
+              "minLevel": 5,
+              "zone": "tribal pack encampment in the forest, wooden totems, morning mist",
+              "img": "evolution/beastkin_pantherkin_L05_yearling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Prowler",
+              "minLevel": 10,
+              "zone": "forest training glade with wooden practice targets",
+              "img": "evolution/beastkin_pantherkin_L10_prowler_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hunter",
+              "minLevel": 15,
+              "zone": "dappled hunting ground, game trails, forest light",
+              "img": "evolution/beastkin_pantherkin_L15_hunter_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Pack-Warrior",
+              "minLevel": 20,
+              "zone": "pack warrior clearing with a central fire pit",
+              "img": "evolution/beastkin_pantherkin_L20_pack-warrior_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Alpha",
+              "minLevel": 30,
+              "zone": "alpha's clearing beneath an ancient tree, mossy stones",
+              "img": "evolution/beastkin_pantherkin_L30_alpha_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Moonhunter",
+              "minLevel": 40,
+              "zone": "moonlit forest ridge with pale-blue fog",
+              "img": "evolution/beastkin_pantherkin_L40_moonhunter_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Alphasong",
+              "minLevel": 45,
+              "zone": "sacred grove shrine with stone totems and moss",
+              "img": "evolution/beastkin_pantherkin_L45_alphasong_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Primal Alpha",
+              "minLevel": 50,
+              "zone": "PRIMAL MOON-PEAK \u2014 howl chorus, aurora sky, shimmering spirit-beasts manifesting around him, ancient totems glowing with inner light, full moon overhead",
+              "img": "evolution/beastkin_pantherkin_L50_primalalpha_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "bearkin": {
+          "label": "Bearkin",
+          "heroName": "Ursaros",
+          "nameSuffix": "Ironmaw",
+          "stages": [
+            {
+              "name": "Cub",
+              "minLevel": 1,
+              "zone": "forest-cave den with soft moss and fern bedding, dappled morning light",
+              "img": "evolution/beastkin_bearkin_L01_cub_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Yearling",
+              "minLevel": 5,
+              "zone": "tribal pack encampment in the forest, wooden totems, morning mist",
+              "img": "evolution/beastkin_bearkin_L05_yearling_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Prowler",
+              "minLevel": 10,
+              "zone": "forest training glade with wooden practice targets",
+              "img": "evolution/beastkin_bearkin_L10_prowler_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Hunter",
+              "minLevel": 15,
+              "zone": "dappled hunting ground, game trails, forest light",
+              "img": "evolution/beastkin_bearkin_L15_hunter_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Pack-Warrior",
+              "minLevel": 20,
+              "zone": "pack warrior clearing with a central fire pit",
+              "img": "evolution/beastkin_bearkin_L20_pack-warrior_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Alpha",
+              "minLevel": 30,
+              "zone": "alpha's clearing beneath an ancient tree, mossy stones",
+              "img": "evolution/beastkin_bearkin_L30_alpha_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Moonhunter",
+              "minLevel": 40,
+              "zone": "moonlit forest ridge with pale-blue fog",
+              "img": "evolution/beastkin_bearkin_L40_moonhunter_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Alphasong",
+              "minLevel": 45,
+              "zone": "sacred grove shrine with stone totems and moss",
+              "img": "evolution/beastkin_bearkin_L45_alphasong_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Primal Alpha",
+              "minLevel": 50,
+              "zone": "PRIMAL MOON-PEAK \u2014 howl chorus, aurora sky, shimmering spirit-beasts manifesting around him, ancient totems glowing with inner light, full moon overhead",
+              "img": "evolution/beastkin_bearkin_L50_primalalpha_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
+    },
+    "wraith": {
+      "label": "Spirit-Warrior",
+      "archetype": "Astral",
+      "emoji": "\ud83d\udc7b",
+      "stageNames": [
+        "Wisp",
+        "Phantom",
+        "Walker",
+        "Astral",
+        "Spiritblade",
+        "Skywalker",
+        "Archspirit",
+        "Dreamlord",
+        "Astral Sovereign"
+      ],
+      "bloodlines": {
+        "mourner": {
+          "label": "Skyweaver",
+          "heroName": "Lyra",
+          "nameSuffix": "Skyweaver",
+          "stages": [
+            {
+              "name": "Wisp",
+              "minLevel": 1,
+              "zone": "candlelit ethereal nursery of soft light, floating glyphs",
+              "img": "evolution/wraith_mourner_L01_wisp_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Phantom",
+              "minLevel": 5,
+              "zone": "astral chamber with floating starlight motes",
+              "img": "evolution/wraith_mourner_L05_phantom_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Walker",
+              "minLevel": 10,
+              "zone": "misty astral training hall with glowing ring-gates",
+              "img": "evolution/wraith_mourner_L10_walker_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Astral",
+              "minLevel": 15,
+              "zone": "crystalline astral-plane bridge over a starfield",
+              "img": "evolution/wraith_mourner_L15_astral_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Spiritblade",
+              "minLevel": 20,
+              "zone": "ethereal battlefield with drifting motes of light",
+              "img": "evolution/wraith_mourner_L20_spiritblade_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Skywalker",
+              "minLevel": 30,
+              "zone": "astral nexus where realms cross, arcing energy ribbons",
+              "img": "evolution/wraith_mourner_L30_skywalker_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archspirit",
+              "minLevel": 40,
+              "zone": "obsidian-crystal tower-balcony above a starfield",
+              "img": "evolution/wraith_mourner_L40_archspirit_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Dreamlord",
+              "minLevel": 45,
+              "zone": "realm-between-worlds with floating platforms of glowing glass",
+              "img": "evolution/wraith_mourner_L45_dreamlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Astral Sovereign",
+              "minLevel": 50,
+              "zone": "COLOSSAL ASTRAL CATHEDRAL \u2014 shifting reality, floating crystalline platforms suspended in cosmic mist, broken obelisks of glowing runic stone, aurora sky with twin moons, distant kneeling spirit-warriors visible",
+              "img": "evolution/wraith_mourner_L50_astralsovereign_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "voidstalker": {
+          "label": "Voidstalker",
+          "heroName": "Eryx",
+          "nameSuffix": "Voidwalker",
+          "stages": [
+            {
+              "name": "Wisp",
+              "minLevel": 1,
+              "zone": "candlelit ethereal nursery of soft light, floating glyphs",
+              "img": "evolution/wraith_voidstalker_L01_wisp_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Phantom",
+              "minLevel": 5,
+              "zone": "astral chamber with floating starlight motes",
+              "img": "evolution/wraith_voidstalker_L05_phantom_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Walker",
+              "minLevel": 10,
+              "zone": "misty astral training hall with glowing ring-gates",
+              "img": "evolution/wraith_voidstalker_L10_walker_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Astral",
+              "minLevel": 15,
+              "zone": "crystalline astral-plane bridge over a starfield",
+              "img": "evolution/wraith_voidstalker_L15_astral_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Spiritblade",
+              "minLevel": 20,
+              "zone": "ethereal battlefield with drifting motes of light",
+              "img": "evolution/wraith_voidstalker_L20_spiritblade_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Skywalker",
+              "minLevel": 30,
+              "zone": "astral nexus where realms cross, arcing energy ribbons",
+              "img": "evolution/wraith_voidstalker_L30_skywalker_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archspirit",
+              "minLevel": 40,
+              "zone": "obsidian-crystal tower-balcony above a starfield",
+              "img": "evolution/wraith_voidstalker_L40_archspirit_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Dreamlord",
+              "minLevel": 45,
+              "zone": "realm-between-worlds with floating platforms of glowing glass",
+              "img": "evolution/wraith_voidstalker_L45_dreamlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Astral Sovereign",
+              "minLevel": 50,
+              "zone": "COLOSSAL ASTRAL CATHEDRAL \u2014 shifting reality, floating crystalline platforms suspended in cosmic mist, broken obelisks of glowing runic stone, aurora sky with twin moons, distant kneeling spirit-warriors visible",
+              "img": "evolution/wraith_voidstalker_L50_astralsovereign_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        },
+        "sunspire": {
+          "label": "Sunspire",
+          "heroName": "Solaris",
+          "nameSuffix": "Sunspire",
+          "stages": [
+            {
+              "name": "Wisp",
+              "minLevel": 1,
+              "zone": "candlelit ethereal nursery of soft light, floating glyphs",
+              "img": "evolution/wraith_sunspire_L01_wisp_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Phantom",
+              "minLevel": 5,
+              "zone": "astral chamber with floating starlight motes",
+              "img": "evolution/wraith_sunspire_L05_phantom_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Walker",
+              "minLevel": 10,
+              "zone": "misty astral training hall with glowing ring-gates",
+              "img": "evolution/wraith_sunspire_L10_walker_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Astral",
+              "minLevel": 15,
+              "zone": "crystalline astral-plane bridge over a starfield",
+              "img": "evolution/wraith_sunspire_L15_astral_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Spiritblade",
+              "minLevel": 20,
+              "zone": "ethereal battlefield with drifting motes of light",
+              "img": "evolution/wraith_sunspire_L20_spiritblade_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Skywalker",
+              "minLevel": 30,
+              "zone": "astral nexus where realms cross, arcing energy ribbons",
+              "img": "evolution/wraith_sunspire_L30_skywalker_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Archspirit",
+              "minLevel": 40,
+              "zone": "obsidian-crystal tower-balcony above a starfield",
+              "img": "evolution/wraith_sunspire_L40_archspirit_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Dreamlord",
+              "minLevel": 45,
+              "zone": "realm-between-worlds with floating platforms of glowing glass",
+              "img": "evolution/wraith_sunspire_L45_dreamlord_final.jpg",
+              "legend": false
+            },
+            {
+              "name": "Astral Sovereign",
+              "minLevel": 50,
+              "zone": "COLOSSAL ASTRAL CATHEDRAL \u2014 shifting reality, floating crystalline platforms suspended in cosmic mist, broken obelisks of glowing runic stone, aurora sky with twin moons, distant kneeling spirit-warriors visible",
+              "img": "evolution/wraith_sunspire_L50_astralsovereign_final.jpg",
+              "legend": true
+            }
+          ],
+          "complete": true
+        }
+      }
     }
   }
 }
