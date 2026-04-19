@@ -299,11 +299,11 @@
   .sp-btn.active { background: rgba(255,205,107,0.15);
     border-color: var(--accent); color: var(--accent); }
 
-  /* admin-only species picker in top bar */
-  .species-picker { display: none; }
-  body.admin-on .species-picker { display: flex; }
-  body.admin-on.view-champion .bloodline-bar { display: flex; }
-  body:not(.admin-on) .bloodline-bar { display: none !important; }
+  /* This repo is ADMIN DEMO only. User-facing app is a separate repo. */
+  .species-picker { display: flex; }
+  .bloodline-bar { display: flex !important; }
+  .main-nav { display: none; }
+  .action-btn.stable-btn { display: none; }
 
   /* bloodline sub-picker */
   .bloodline-bar {
@@ -976,9 +976,8 @@
 </aside>
 
 <div class="actions">
-  <button class="action-btn" onclick="navTo('stable')">🏛 Stable</button>
   <button class="action-btn" onclick="alert('🎯 Quests hub — opens in the main VulcanX ecosystem. Complete quests there to earn chests, which you open elsewhere. Chests drop potions that you bring back here to feed your champion.')">🎯 Quests</button>
-  <button class="action-btn" onclick="navTo('explore')">🏆 Leaderboard</button>
+  <button class="action-btn" id="adminLeaderboardBtn">🏆 Leaderboard</button>
   <button class="action-btn" onclick="alert('⚔️ Arena — async stat battles coming soon. Two champions enter, deterministic winner based on stats + species affinity.')">⚔️ Arena</button>
   <button class="action-btn primary" id="animateBtn">✨ Animate Champion</button>
 </div>
@@ -1605,6 +1604,7 @@ bindIf('animateBtn', 'click', () => {
   }
 });
 bindIf('leaderboardBtn', 'click', showLeaderboard);
+bindIf('adminLeaderboardBtn', 'click', showLeaderboard);
 bindIf('lbCloseBtn', 'click', closeLeaderboard);
 bindIf('allocPotionRow', 'click', (e) => {
   useAllocationPotion(e.currentTarget);
@@ -2065,10 +2065,16 @@ async function boot() {
     STAGES = SPECIES.orc.bloodlines.ironfang.stages;
     renderSpeciesButtons();
 
-    // Load my stable + admin pref, then route to initial view
-    loadMyChampions();
-    loadAdmin();
-    navTo('stable');
+    // Admin demo: always show champion detail with everything selectable.
+    loadMyChampions();   // harmless, just doesn't render here
+    adminMode = true;
+    document.body.classList.add('admin-on');
+    // Seed champion state from a default (orc ironfang L1) — admin can
+    // click any species/bloodline/stage to browse.
+    state.level = 1;
+    state.stageIdx = 0;
+    navTo('champion');
+    renderBloodlinePicker_inChampion();
   } catch (e) {
     alert('Failed to load bloodlines.json: ' + e.message);
     console.error(e);
